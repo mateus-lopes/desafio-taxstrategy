@@ -11,7 +11,7 @@
         transform: translateY(-50%);
         width: 18px;
         height: 18px;
-        background-image: url('../../../assets/arrow-down.svg');
+        background-image: url('../../../assets/icon_arrowDown.svg');
         background-size: cover;
     }
 
@@ -33,7 +33,17 @@
         background-color: $secondary-color;
         border-radius: 100%;
     }
+
+    li:hover::before {
+        background-color: $primary-color;
+    }
+    li:hover {
+        color: $primary-color;
+        cursor: pointer;
+    }
 }
+
+
 
 
 

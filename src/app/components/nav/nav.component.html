@@ -1,20 +1,10 @@
 <ul class="flex flex-col gap-4 py-8">
-    <li>
-        <a routerLink="/">Visão Geral</a>
+    <li class="border-[#F7955B] px-8">
+        <a routerLink="/teste" class="cursor-pointer hover:text-[#F7955B] transition-all">Visão Geral</a>
     </li>
-    <li class="notification">
-        <a routerLink="/">Meus Seviços</a>
+    <li class="notification border-[#F7955B] px-8">
+        <a routerLink="/" class="cursor-pointer hover:text-[#F7955B] transition-all">Meus Seviços</a>
     </li>
     <app-nav-dropdown />
-    <li class="nav-dropdown">
-        <p class="dropdown">Funcionários</p>
-        <ul>
-            <li>
-                <a routerLink="/">Tabela de Funcionários</a>
-            </li>
-            <li>
-                <a routerLink="/">Cadastrar novo Funcionário</a>
-            </li>
-        </ul>
-    </li>
+    <app-nav-dropdown />
 </ul>
