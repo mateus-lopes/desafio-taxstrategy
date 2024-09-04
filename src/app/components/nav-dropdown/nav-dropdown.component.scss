@@ -1,0 +1,39 @@
+@import "../../../color-variables.scss";
+
+.nav-dropdown {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: .5em;
+        right: 1em;
+        transform: translateY(-50%);
+        width: 18px;
+        height: 18px;
+        background-image: url('../../../assets/arrow-down.svg');
+        background-size: cover;
+    }
+
+    li {
+        margin-left: 1em;
+        padding: .5em 0;
+    }
+
+    ul li:last-child {
+        padding-bottom: 0;
+    }
+
+    li::before {
+        content: '';
+        margin-right: .5em;
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        background-color: $secondary-color;
+        border-radius: 100%;
+    }
+}
+
+
+

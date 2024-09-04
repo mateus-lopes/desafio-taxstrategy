@@ -1,0 +1,14 @@
+<main class="bg-[#F7F7F7]">
+    <section>
+        <app-logo />
+    </section>
+    <section class="flex">
+        <div class="w-1/4 min-h-screen">
+            <app-navbar />
+        </div>
+        <div class="w-3/4 p-8 min-h-screen">
+            <ng-content select="[main]"></ng-content>
+            <ng-content select="[footer]"></ng-content>
+        </div>
+    </section>
+</main>
