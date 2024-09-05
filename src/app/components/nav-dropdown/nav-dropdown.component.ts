@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './nav-dropdown.component.scss'
 })
 export class NavDropdownComponent {
+  @Input() currentPage: string = "/";
   show = signal(true);
   showClass = signal('fadeIn');
 

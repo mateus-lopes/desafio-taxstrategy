@@ -4,7 +4,7 @@
     </div>
     <ul [class]="showClass()">
         <a *ngFor="let item of data.children" [routerLink]="item.url">
-            <li class="select-none">
+            <li class="select-none" [class]="{'select': currentPage == item.url}">
                 {{ item.text }}
             </li>
         </a>

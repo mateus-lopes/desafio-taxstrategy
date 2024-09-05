@@ -20,6 +20,7 @@ export class NavComponent {
   @Input() datas: Link[] = [];
   @Input() myServicesValue: number = 2;
   @Input() notification: boolean = false;
+  @Input() currentPage: string = "/";
 
   @Output("click") onClick: EventEmitter<any> = new EventEmitter();
 

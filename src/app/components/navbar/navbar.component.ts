@@ -25,6 +25,7 @@ export class NavbarComponent {
     this.user.update(current => current ? false : true);
   }
 
+  @Input() currentPage: string = "/";
   @Input() navbar: Link[] = [{
     text: "Visão Geral",
     url: "/"
@@ -50,10 +51,10 @@ export class NavbarComponent {
     url: "",
     children: [{
       text: "Tabela de Funcionários",
-      url: "/"
+      url: "/employess"
     }, {
       text: "Cadastrar novo Funcionário",
-      url: "/"
+      url: "/employess/add"
     }]
   }];
   @Input() myServicesValue: number = 1;
