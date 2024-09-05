@@ -32,7 +32,7 @@ export class NavbarComponent {
   }, {
     text: "Meus Seviços",
     url: "/my-services",
-    notification: true
+    notification: 2
   }, {
     text: "Ordens de Serviço",
     url: "",
@@ -57,8 +57,7 @@ export class NavbarComponent {
       url: "/employess/add"
     }]
   }];
-  @Input() myServicesValue: number = 1;
-  @Input() notification: boolean = false;
+  @Input() notification: number = 1;
 
   @Output("click") onClick: EventEmitter<any> = new EventEmitter();
 

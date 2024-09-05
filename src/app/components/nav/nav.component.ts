@@ -18,8 +18,7 @@ import { ILink } from "../../interfaces/navbar.interface"
 })
 export class NavComponent {
   @Input() datas: ILink[] = [];
-  @Input() myServicesValue: number = 2;
-  @Input() notification: boolean = false;
+  @Input() notification: number = 2;
   @Input() currentPage: string = "/";
 
   @Output("click") onClick: EventEmitter<any> = new EventEmitter();

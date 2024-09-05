@@ -16,4 +16,6 @@ export class LayoutComponent {
   @Input() path: string = "Title Layout";
   @Input() page: string = "";
   @Input() currentPage: string = "/";
+  @Input() notification: number = 2;
+  
 }

@@ -4,7 +4,7 @@
         <li [class]="{'select': currentPage == item.url, 'notification': item.notification}" class="px-8 cursor-pointer hover:text-[#F7955B] transition-all select-none" *ngIf="item.url">
                 {{ item.text }}
                 <span *ngIf="item.notification">
-                    {{ myServicesValue }}
+                    {{ notification }}
                 </span>
             </li>
         </a>

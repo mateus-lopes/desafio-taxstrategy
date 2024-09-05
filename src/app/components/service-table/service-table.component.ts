@@ -33,7 +33,7 @@ export class ServiceTableComponent {
     switch (status) {
       case 'Em Andamento':
         return 'blue';
-      case 'Concluido':
+      case 'Finalizado':
         return 'green';
       case 'Cancelado':
         return 'red';
@@ -100,25 +100,26 @@ export class ServiceTableComponent {
   @Input() services: IService[] = [
     {
       ref: "1",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a",
-      status: "Em Espera",
+      status: "Aguardando Funcionário",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Notebook'
     },
     {
       ref: "2",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Em Espera",
+      status: "Aguardando Funcionário",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Notebook'
     }
   ];
   @Input() employees: string[] = ["João", "Jeferson", "Mateus"];
-  @Input() statuses: string[] = ["Em Espera", "Concluido", "Cancelado"];
   @Input() onlyRead: boolean = false;
 
   allSelected() {

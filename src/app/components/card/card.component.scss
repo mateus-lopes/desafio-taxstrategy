@@ -1,0 +1,25 @@
+.blue {
+    background-color: #006ab146;
+    color: #03398a;
+}
+
+.green {
+    background-color: #00b74a46;
+    color: #00b74a;
+}
+
+.red {
+    background-color: #ff00002e;
+    color: #ff0000;
+}
+
+.black {
+    background-color: #0000001a;
+    color: #000000;
+}
+
+.hover-custom:hover {
+    .equipmentType {
+        color: #F7955B;
+    }
+}

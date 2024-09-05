@@ -41,7 +41,7 @@
         <td class="text-muted px-6 py-4 whitespace-nowrap">
           <div class="text-sm font-semibold">{{ service.employee ? service.employee : 'Sem funcionário Responsável' }}</div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.forecastDate) }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.finalDate) }}</td>
         <td class="px-6 py-4 whitespace-nowrap">{{ service.description.length > 20 ? (service.description | slice:0:20) + '...' : service.description }}</td>
         <td class="px-6 py-4 whitespace-nowrap">
           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.status)">{{ service.status }}</span>

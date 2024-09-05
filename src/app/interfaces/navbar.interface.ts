@@ -2,15 +2,16 @@ export interface ILink {
   text: string;
   url: string;
   children?: ILink[];
-  notification?: boolean;
+  notification?: number;
 }
 
 export interface IService {
   ref: string;
-  forecastDate: string;
+  initialDate: string;
+  finalDate: string;
   employee: string;
-  email: string;
+  equipmentType:  'Celular' | 'TV' | 'Notebook' | 'Monitor' | 'Computador desktop';
   description: string;
-  status: string;
+  status:  'Em Andamento' | 'Finalizado' |  'Aguardando Funcionário';
   selected?: boolean;
 }

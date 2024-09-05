@@ -1,8 +1,9 @@
-<app-layout path="Meus Serviços" currentPage="/my-services">
+<app-layout path="Meus Serviços" [notification]="services.length" currentPage="/my-services">
     <div main>
-        <p>my-services works!</p>
-    </div>
-    <div footer>
-        <p>dashboard works (footer)!</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div class="grid-item" *ngFor="let service of services">
+                <app-card [service]="service"></app-card>
+            </div>
+        </div>
     </div>
 </app-layout>

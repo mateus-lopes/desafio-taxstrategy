@@ -1,9 +1,9 @@
 <main>
     <section class="flex">
         <div class="w-80 fixed h-screen">
-            <app-navbar [currentPage]="currentPage" />
+            <app-navbar [currentPage]="currentPage" [notification]="notification" />
         </div>
-        <div class="w-3/4 px-8 ml-80 mt-28">
+        <div class="w-3/4 px-8 ml-80 mt-28 mb-16">
             <app-title-page [path]="path" [page]="page" />
             <ng-content select="[main]"></ng-content>
             <ng-content select="[footer]"></ng-content>

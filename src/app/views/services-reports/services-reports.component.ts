@@ -17,57 +17,63 @@ export class ServicesReportsComponent {
   services: IService[] = [
     {
       ref: "1",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
     {
       ref: "2",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
     {
       ref: "3",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "Jeferson",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
     {
       ref: "4",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "Mateus",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
     {
       ref: "5",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
     {
       ref: "6",
-      forecastDate: "2021-10-10",
+      finalDate: "2021-10-10",
       employee: "João",
-      email:'abc@gmail.com',
       description: "Troca de óleo",
-      status: "Concluido",
+      status: "Finalizado",
       selected: false,
+      initialDate: '',
+      equipmentType: 'Celular'
     },
   ]
 }
