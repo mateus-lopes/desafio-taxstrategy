@@ -40,7 +40,7 @@ export class NavbarComponent {
       text: "Painel de Seviços",
       url: "/services"
     }, {
-      text: "Relatorio de Seviços",
+      text: "Histórico de Seviços",
       url: "/services/reports"
     }, {
       text: "Cadastrar novo serviço",

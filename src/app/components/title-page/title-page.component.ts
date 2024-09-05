@@ -12,5 +12,5 @@ import { Component, Input } from '@angular/core';
 })
 export class TitlePageComponent {
   @Input() path: string = "Title 1";
-  @Input() page: string = "Title 2";
+  @Input() page: string = "";
 }
