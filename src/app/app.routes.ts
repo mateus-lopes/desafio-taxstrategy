@@ -22,15 +22,15 @@ export const routes: Routes = [
         component: MyServicesComponent
     },
     {
-        path: 'services-add',
-        component: ServicesAddComponent
-    },
-    {
-        path: 'services-panel',
+        path: 'services',
         component: ServicesPanelComponent
     },
     {
-        path: 'services-reports',
+        path: 'services/add',
+        component: ServicesAddComponent
+    },
+    {
+        path: 'services/reports',
         component: ServicesReportsComponent
     },
     {

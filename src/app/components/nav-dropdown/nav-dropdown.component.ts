@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Link } from '../../interfaces/navbar.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nav-dropdown',
   standalone: true,
-  imports: [],
+  imports: [
+    RouterLink,
+    CommonModule,
+  ],
   templateUrl: './nav-dropdown.component.html',
   styleUrl: './nav-dropdown.component.scss'
 })
 export class NavDropdownComponent {
+  show = signal(true);
+  showClass = signal('fadeIn');
+
+  toggleDrop = () => {
+    this.show.update(current => current ? false : true);
+    this.showClass.update(current => current === 'fadeOut' ? 'fadeIn' : 'fadeOut');
+  }
+  
+  @Input() data: Link = {
+    text: "Teste",
+    url: "/"
+  };
 
 }

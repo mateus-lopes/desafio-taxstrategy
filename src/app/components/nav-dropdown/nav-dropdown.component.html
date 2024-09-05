@@ -1,14 +1,12 @@
 <li class="nav-dropdown px-8">
-    <p>Ordens de Serviço</p>
-    <ul>
-        <li>
-            <a routerLink="/test">Painel de Seviços</a>
-        </li>
-        <li>
-            <a routerLink="/">Relatorio de Seviços</a>
-        </li>
-        <li>
-            <a routerLink="/">Cadastrar novo serviço</a>
-        </li>
+    <div (click)="toggleDrop()" class="cursor-pointer hover:text-[#F7955B]">
+        <p [class]="show() ? 'dropdownIn': 'dropdownOut'" class="dropdown w-full select-none">{{data.text}}</p>
+    </div>
+    <ul [class]="showClass()">
+        <a *ngFor="let item of data.children" [routerLink]="item.url">
+            <li class="select-none">
+                {{ item.text }}
+            </li>
+        </a>
     </ul>
 </li>
