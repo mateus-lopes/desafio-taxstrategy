@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { BtnComponent } from "../btn/btn.component";
 
 @Component({
   selector: 'app-service-table',
@@ -12,8 +13,9 @@ import { BehaviorSubject } from 'rxjs';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    FormsModule
-  ],
+    FormsModule,
+    BtnComponent
+],
   templateUrl: './service-table.component.html',
   styleUrl: './service-table.component.scss'
 })
@@ -27,6 +29,19 @@ export class ServiceTableComponent {
 
   selectedOption = '';
   
+  getColor(status: string) {
+    switch (status) {
+      case 'Em Andamento':
+        return 'blue';
+      case 'Concluido':
+        return 'green';
+      case 'Cancelado':
+        return 'red';
+      default:
+        return 'black';
+    }
+  }
+
   @HostListener('window:keydown', ['$event'])
   onCtrlDown(event: KeyboardEvent) {
     if (event.key === 'Control') {
@@ -88,7 +103,7 @@ export class ServiceTableComponent {
       forecastDate: "2021-10-10",
       employee: "João",
       email:'abc@gmail.com',
-      description: "Troca de óleo",
+      description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a",
       status: "Em Espera",
       selected: false,
     },

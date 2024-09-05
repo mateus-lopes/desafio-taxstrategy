@@ -7,17 +7,17 @@
     <p class="ml-2">Deletado com sucesso</p>
   </div>
 </div>
-<table class="min-w-full">
+<table class="min-w-full rounded-xl overflow-hidden">
     <thead>
-      <tr [class]="{'selected': allSelected()}">
-        <th *ngIf="!onlyRead" scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+      <tr class="bg-[#F7955B] !text-white">
+        <th *ngIf="!onlyRead" scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
           <input (change)="selectAllRows()" [checked]="allSelected()" type="checkbox" class="form-checkbox h-4 w-4" />
         </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Código</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data de Previsão</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Profissional</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Código</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Funcionário</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Data de Previsão</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Descrição</th>
+        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
         <th scope="col" class="relative px-6 py-3">
           <span class="sr-only">Editar</span>
         </th>
@@ -38,13 +38,13 @@
           <input (change)="selectRow(service.ref)" [checked]="service.selected" type="checkbox" class="form-checkbox h-4 w-4" />
         </td>
         <td class="px-6 py-4 whitespace-nowrap">{{ service.ref }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.forecastDate) }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <div class="text-sm font-medium">{{ service.employee }}</div>
+        <td class="text-muted px-6 py-4 whitespace-nowrap">
+          <div class="text-sm font-semibold">{{ service.employee ? service.employee : 'Sem funcionário Responsável' }}</div>
         </td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ service.description }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.forecastDate) }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">{{ service.description.length > 20 ? (service.description | slice:0:20) + '...' : service.description }}</td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{ service.status }}</span>
+          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.status)">{{ service.status }}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <a class="cursor-pointer" [routerLink]="'/services/edit/' + service.ref">
@@ -79,12 +79,12 @@
             </option>
           </select>
           <span class="dropdown-icon">
-        <svg style="transform: rotate(180deg);" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#BFBFBF" stroke-width="1.89474" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+            <svg style="transform: rotate(180deg);" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#BFBFBF" stroke-width="1.89474" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </span>
         </div>
-        <button (click)="setNewEmployee(selectedOption, editRow$.getValue())" class="px-8 py-2 bg-[#F7955B] text-white rounded-lg transition-all hover:bg-[#D97235]">Salvar</button>
+        <app-btn text="Salvar" (click)="setNewEmployee(selectedOption, editRow$.getValue())" />
       </div>
     </div>
   </div>

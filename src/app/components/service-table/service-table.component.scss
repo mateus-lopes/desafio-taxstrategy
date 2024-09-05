@@ -1,5 +1,13 @@
+.text-muted {
+    color: #787878;
+}
+
 .selected {
     color: #F7955B !important;
+
+    .text-muted {
+        color: #F7955B !important;
+    }
 }
 
 .cursor {
@@ -29,21 +37,28 @@ tr.dragover {
     background-color: #00000034;
 }
 
-select {
-    appearance: none;
-    transition: all 0.3s ease;
+
+.blue {
+    background-color: #006ab146;
+    color: #03398a;
 }
 
-select:focus {
-    outline: none;
-    border-color: #F7955B;
+.green {
+    background-color: #00b74a46;
+    color: #00b74a;
 }
 
-.dropdown-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 16px;
-    pointer-events: none;
+.red {
+    background-color: #ff00002e;
+    color: #ff0000;
+}
+
+.black {
+    background-color: #0000001a;
+    color: #000000;
+}
+
+table {
+    background: #fff;
+    box-shadow: 0px 16px 25.5px -2px rgba(102, 102, 102, 0.055);
 }

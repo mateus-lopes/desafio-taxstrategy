@@ -26,3 +26,22 @@ body.ctrl-pressed {
     opacity: 1;
   }
 }
+
+select {
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #F7955B;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
