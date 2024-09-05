@@ -21,6 +21,7 @@ export class ServiceTableComponent {
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
   
   editRow$ = new BehaviorSubject<boolean>(false);
+  deleteRow$ = new BehaviorSubject<string>('');
 
   ctrlPressed$ = new BehaviorSubject<boolean>(false);
   
@@ -169,7 +170,10 @@ export class ServiceTableComponent {
         this.editRow$.next(true);
       } else if (action === 'Delete') {
         this.services.splice(this.selectedRowIndex, 1);
-        alert(`Deletado: ${selectedItem.ref}`);
+        this.deleteRow$.next(selectedItem.ref);
+        setTimeout(() => {
+          this.deleteRow$.next('');
+        }, 1000);
       }
     }
 
