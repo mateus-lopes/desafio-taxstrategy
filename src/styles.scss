@@ -9,6 +9,10 @@ body {
   background-color: #F7F7F7;
 }
 
+body.ctrl-pressed {
+  cursor: grab;
+}
+
 .fadeIn {
   opacity: 1;
   animation: fadeIn .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);

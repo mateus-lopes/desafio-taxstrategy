@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 import { NavComponent } from "../nav/nav.component";
 import { LogoComponent } from "../logo/logo.component";
 import { RouterLink } from '@angular/router';
-import { Link } from "../../interfaces/navbar.interface"
+import { ILink } from "../../interfaces/navbar.interface"
 
 @Component({
   selector: 'app-navbar',
@@ -26,7 +26,7 @@ export class NavbarComponent {
   }
 
   @Input() currentPage: string = "/";
-  @Input() navbar: Link[] = [{
+  @Input() navbar: ILink[] = [{
     text: "Visão Geral",
     url: "/"
   }, {

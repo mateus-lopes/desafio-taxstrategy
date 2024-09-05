@@ -1,0 +1,49 @@
+.selected {
+    color: #F7955B !important;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+tr.dragging {
+    opacity: 1;
+    background-color: #3498db;
+}
+
+tr.dragover {
+    background-color: #3498db;
+    border: 2px dashed #3498db;
+}
+
+.context-menu {
+    position: absolute;
+    z-index: 1000;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-div {
+    background-color: #00000034;
+}
+
+select {
+    appearance: none;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: #F7955B;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+}

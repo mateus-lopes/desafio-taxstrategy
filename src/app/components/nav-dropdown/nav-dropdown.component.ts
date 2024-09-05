@@ -1,6 +1,6 @@
 import { Component, Input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Link } from '../../interfaces/navbar.interface';
+import { ILink } from '../../interfaces/navbar.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -23,7 +23,7 @@ export class NavDropdownComponent {
     this.showClass.update(current => current === 'fadeOut' ? 'fadeIn' : 'fadeOut');
   }
   
-  @Input() data: Link = {
+  @Input() data: ILink = {
     text: "Teste",
     url: "/"
   };
