@@ -13,7 +13,7 @@ import { TitlePageComponent } from "../title-page/title-page.component";
   styleUrl: './layout.component.scss'
 })
 export class LayoutComponent {
-  @Input() path: string = "Title Layout";
+  @Input() path: string = "";
   @Input() page: string = "";
   @Input() currentPage: string = "/";
   @Input() notification: number = 2;
