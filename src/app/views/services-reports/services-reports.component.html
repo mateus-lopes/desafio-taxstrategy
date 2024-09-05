@@ -1,6 +1,6 @@
-<app-layout path="Ordens de Serviço" page="Histórico de Seviços" currentPage="/services/reports">
+<app-layout path="Ordens de Serviço" page="Histórico de Serviços" currentPage="/services/reports">
     <div main>
-        <p>services-reports works!</p>
+        <app-service-table [services]="services" [onlyRead]="true"></app-service-table>
     </div>
     <div footer>
         <p>dashboard works (footer)!</p>

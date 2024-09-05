@@ -20,10 +20,12 @@ import { BehaviorSubject } from 'rxjs';
 export class ServiceTableComponent {
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
   
-  editRow$ = new BehaviorSubject<boolean>(false);
+  editRow$ = new BehaviorSubject<string>('');
   deleteRow$ = new BehaviorSubject<string>('');
 
   ctrlPressed$ = new BehaviorSubject<boolean>(false);
+
+  selectedOption = '';
   
   @HostListener('window:keydown', ['$event'])
   onCtrlDown(event: KeyboardEvent) {
@@ -63,6 +65,17 @@ export class ServiceTableComponent {
     const service = this.services.find((service) => service.ref === ref);
     if (service) service.selected = !service.selected;
   }
+
+  setNewEmployee(employee: string, ref: string) {
+    try {
+      const service = this.services.find((service) => service.ref === ref);
+    if (service) service.employee = employee;
+    } catch (error) {
+      console.error(error);
+    } finally {
+      this.editRow$.next('');
+    }
+  }
   
   selectAllRows() {
     const allSelected = this.services.every((service) => service.selected);
@@ -87,35 +100,11 @@ export class ServiceTableComponent {
       description: "Troca de óleo",
       status: "Em Espera",
       selected: false,
-    },
-    {
-      ref: "3",
-      forecastDate: "2021-10-10",
-      employee: "João",
-      email:'abc@gmail.com',
-      description: "Troca de óleo",
-      status: "Em Espera",
-      selected: false,
-    },
-    {
-      ref: "4",
-      forecastDate: "2021-10-10",
-      employee: "João",
-      email:'abc@gmail.com',
-      description: "Troca de óleo",
-      status: "Em Espera",
-      selected: false,
-    },
-    {
-      ref: "5",
-      forecastDate: "2021-10-10",
-      employee: "João",
-      email:'abc@gmail.com',
-      description: "Troca de óleo",
-      status: "Em Espera",
-      selected: false,
     }
   ];
+  @Input() employees: string[] = ["João", "Jeferson", "Mateus"];
+  @Input() statuses: string[] = ["Em Espera", "Concluido", "Cancelado"];
+  @Input() onlyRead: boolean = false;
 
   allSelected() {
     return this.services.every(service => service.selected);
@@ -167,7 +156,7 @@ export class ServiceTableComponent {
       console.log(`${action} no item: `, selectedItem);
 
       if (action === 'Edit') {
-        this.editRow$.next(true);
+        this.editRow$.next(selectedItem.ref);
       } else if (action === 'Delete') {
         this.services.splice(this.selectedRowIndex, 1);
         this.deleteRow$.next(selectedItem.ref);
