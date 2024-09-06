@@ -21,9 +21,6 @@ import { BtnComponent } from "../btn/btn.component";
 })
 export class ServiceTableComponent {
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
-  
-  editRow$ = new BehaviorSubject<string>('');
-  deleteRow$ = new BehaviorSubject<string>('');
 
   ctrlPressed$ = new BehaviorSubject<boolean>(false);
 
@@ -44,7 +41,7 @@ export class ServiceTableComponent {
 
   @HostListener('window:keydown', ['$event'])
   onCtrlDown(event: KeyboardEvent) {
-    if (event.key === 'Control') {
+    if (event.key === 'Control' && !this.onlyRead) {
       this.renderer.addClass(document.body, 'ctrl-pressed');
       this.ctrlPressed$.next(true);
     }
@@ -52,7 +49,7 @@ export class ServiceTableComponent {
 
   @HostListener('window:keyup', ['$event'])
   onCtrlUp(event: KeyboardEvent) {
-    if (event.key === 'Control') {
+    if (event.key === 'Control' && !this.onlyRead) {
       this.renderer.removeClass(document.body, 'ctrl-pressed');
       this.ctrlPressed$.next(false);
     }
@@ -71,7 +68,7 @@ export class ServiceTableComponent {
   }
 
   onRowClick(event: MouseEvent, service: IService, index: number) {
-    if (event.ctrlKey) {
+    if (event.ctrlKey && !this.onlyRead) {
       this.selectRow(service.ref);
     }
   }
@@ -79,17 +76,6 @@ export class ServiceTableComponent {
   selectRow(ref: string) {
     const service = this.services.find((service) => service.ref === ref);
     if (service) service.selected = !service.selected;
-  }
-
-  setNewEmployee(employee: string, ref: string) {
-    try {
-      const service = this.services.find((service) => service.ref === ref);
-    if (service) service.employee = employee;
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.editRow$.next('');
-    }
   }
   
   selectAllRows() {
@@ -129,7 +115,6 @@ export class ServiceTableComponent {
   draggedItemIndex: number[] = [];
 
   onDragStart(event: DragEvent, index: number) {
-    this.draggedItemIndex.push(index);
     this.services.map((service) => {
       if (service.selected) {
         this.draggedItemIndex.push(this.services.indexOf(service));
@@ -149,12 +134,13 @@ export class ServiceTableComponent {
   onDrop(event: DragEvent, index: number) {
     event.preventDefault();
 
-    const draggedIndex = this.draggedItemIndex;
+    console.log('draggedItemIndex', this.draggedItemIndex);
+    const draggedIndices = this.draggedItemIndex.sort((a, b) => a - b);
 
-    if (draggedIndex !== null && draggedIndex[0] !== index) {
-      const temp = this.services[draggedIndex[0]];
-      this.services.splice(draggedIndex[0], 1);
-      this.services.splice(index, 0, temp);
+    if (draggedIndices.length > 0 && draggedIndices[0] !== index) {
+      const tempItems = draggedIndices.map((draggedIndex) => this.services[draggedIndex]);
+      this.services = this.services.filter((_, i) => !draggedIndices.includes(i));
+      this.services.splice(index, 0, ...tempItems);
     }
 
     this.draggedItemIndex = [];
@@ -162,31 +148,57 @@ export class ServiceTableComponent {
 
   showContextMenu = false;
   contextMenuPosition = { x: 0, y: 0 };
-  selectedRowIndex: number | null = null;
+  selectedRowIndex: number[] = [];
 
-  onRightClick(event: MouseEvent, index: number) {
-    event.preventDefault();
-    this.showContextMenu = true;
-    this.contextMenuPosition = { x: event.clientX, y: event.clientY };
-    this.selectedRowIndex = index;
+
+  editRow$ = new BehaviorSubject<boolean>(false);
+  deleteRow$ = new BehaviorSubject<boolean>(false);
+
+  setNewEmployee(employee: string) {
+    console.log('setNewEmployee', this.selectedRowIndex)
+    this.selectedRowIndex.forEach((index) => {
+      this.services[index].employee = employee;
+    });
+    this.editRow$.next(false);
+    this.services.forEach((service) => (service.selected = false));
   }
 
   onAction(action: string) {
-    if (this.selectedRowIndex !== null) {
-      const selectedItem = this.services[this.selectedRowIndex];
-      console.log(`${action} no item: `, selectedItem);
+    if (this.selectedRowIndex && this.selectedRowIndex.length > 0) {
 
       if (action === 'Edit') {
-        this.editRow$.next(selectedItem.ref);
+        this.editRow$.next(true);
+        console.log('Edit', this.selectedRowIndex);
       } else if (action === 'Delete') {
-        this.services.splice(this.selectedRowIndex, 1);
-        this.deleteRow$.next(selectedItem.ref);
+        this.services = this.services.filter((_, index) => !this.selectedRowIndex.includes(index));
+
+        this.deleteRow$.next(true);
+
         setTimeout(() => {
-          this.deleteRow$.next('');
+          this.deleteRow$.next(false);
         }, 1000);
+
+        console.log('delete', this.selectedRowIndex);
       }
     }
-
+  
     this.showContextMenu = false;
   }
-}
+
+  onRightClick(event: MouseEvent, index: number) {
+    this.selectedRowIndex = [];
+    this.selectedRowIndex.push(index);
+    this.services.forEach((service) => {
+      if (service.selected && this.services.indexOf(service) !== index) {
+        this.selectedRowIndex.push(this.services.indexOf(service));
+      }
+    });
+
+    this.selectedRowIndex = this.selectedRowIndex.sort((a, b) => a - b);
+  
+    event.preventDefault();
+    this.showContextMenu = true;
+    this.contextMenuPosition = { x: event.clientX, y: event.clientY };
+  }
+}  
+  
