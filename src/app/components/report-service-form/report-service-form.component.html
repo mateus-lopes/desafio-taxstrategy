@@ -2,29 +2,29 @@
     Relatório de Serviço
 </div>
 <form [formGroup]="addForm">
-    <div class="flex gap-8">
-        <div class="w-2/3 flex flex-col gap-3 mb-5">
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-2/3 flex flex-col px-3 gap-3 mb-5">
             <label for="employee">Funcionário</label>
             <input class="px-6 py-3 rounded-xl focus:outline-none" id="employee" formControlName="employee" readonly />
         </div>
-        <div class="w-2/3 flex flex-col gap-3 mb-5">
+        <div class="w-full md:w-1/3 flex flex-col px-3 gap-3 mb-5">
             <label for="employee">Tipo de Equipamento</label>
             <input class="px-6 py-3 rounded-xl focus:outline-none" id="equipmentType" formControlName="equipmentType" readonly />
         </div>
     </div>
-    <div class="flex gap-8">
-        <div class="w-1/2 flex flex-col gap-3 mb-5">
+    <div class="flex flex-wrap">
+        <div class="w-1/2 flex flex-col px-3 gap-3 mb-5">
             <label for="initialDate">Data de Cadastro</label>
             <input class="px-6 py-3 rounded-xl focus:outline-none" id="initialDate" (input)="applyDateMask($event, 'initialDate')"
                 placeholder="DD/MM/YYYY" formControlName="initialDate" readonly />
         </div>
-        <div class="w-1/2 flex flex-col gap-3 mb-5">
+        <div class="w-1/2 flex flex-col px-3 gap-3 mb-5">
             <label for="finalDate">Previsão dde entrega</label>
             <input class="px-6 py-3 rounded-xl" type="text" formControlName="finalDate"
                 (input)="applyDateMask($event, 'finalDate')" placeholder="DD/MM/YYYY" readonly/>
         </div>
     </div>
-    <div class="flex flex-col gap-3 mb-5">
+    <div class="flex flex-col px-3 gap-3 mb-5">
         <label for="description">Descrição</label>
         <textarea class="px-6 py-3 rounded-xl" id="description" [rows]="calculateRows(service.description)" placeholder="Escreva aqui..."
             formControlName="description" readonly></textarea>

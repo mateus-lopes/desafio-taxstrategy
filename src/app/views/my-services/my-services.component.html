@@ -1,7 +1,7 @@
 <app-layout path="Meus Serviços" currentPage="/my-services">
     <div main>
-        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-            <div class="grid-item" *ngFor="let service of workService.myWorks">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div class="grid-item w-full" *ngFor="let service of workService.myWorks">
                 <app-card [service]="service"></app-card>
             </div>
         </div>

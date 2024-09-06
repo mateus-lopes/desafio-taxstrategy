@@ -1,7 +1,7 @@
 <app-layout currentPage="/">
     <div main>
         <div class="flex w-full flex-wrap box-border">
-            <div class="w-3/6 px-2 pb-2">
+            <div class="w-full lg:w-4/6 xl:w-3/6 px-2 pb-2">
                 <div
                     class="h-full custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 block"
                 >
@@ -9,7 +9,7 @@
                     <p class="text-gray-500 text-sm">Um sistema web para gestão de manutenção de equipamentos desenvolvido por <a class="text-blue-400 underline" href="https://github.com/mateus-lopes">mateus-lopes</a> permitindo o usuário planejar e controlar as atividades de manutenção.</p>
                 </div>
             </div>
-            <div class="w-2/6 px-2 pb-2">
+            <div class="w-full min-h-36 lg:w-2/6 px-2 sm:py-2 lg:pt-0">
                 <div
                     class="h-full custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 flex flex-col justify-between"
                 >
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-1/6 px-2 pb-2">
+            <div class="hidden xl:block xl:w-1/6 px-2 pb-2">
                 <div
                     class="h-full custom-shadow bg-[#F7955B] text-white border-[#F7955B] border-2 transition-all rounded-xl overflow-hidden p-4 block"
                 >
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="flex w-full flex-wrap box-border">
-            <div class="w-9/12 p-2">
+            <div class="w-full lg:w-7/12 xl:w-9/12 p-2">
                 <div
                     class="custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 block"
                 >
@@ -40,14 +40,14 @@
                     <canvas id="myChart"></canvas>
                 </div>
             </div>
-            <div class="w-3/12 p-2">
+            <div class="w-full lg:w-5/12 xl:w-3/12 p-2">
                 
                 <div
                     class="custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 block"
                 >
                     <h1 class="text-xl font-bold text-black pb-4">Histórico</h1>
                     <ul class="flex flex-col gap-3">
-                        <li class="hover:underline text-sm cursor-pointer" *ngFor="let report of workService.reports.slice(-5).reverse()" [routerLink]="'/services/report/' + report.ref">
+                        <li class="hover:underline text-sm cursor-pointer" *ngFor="let report of workService.reports.slice(-4).reverse()" [routerLink]="'/services/report/' + report.ref">
                            <span class="bg-gray-100 p-1 rounded">#{{ report.ref }}</span>
                            <span> {{ report.employee }} - {{ report.finalDate }} </span>
                         </li>

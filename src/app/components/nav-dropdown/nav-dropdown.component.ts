@@ -15,8 +15,8 @@ import { CommonModule } from '@angular/common';
 })
 export class NavDropdownComponent {
   @Input() currentPage: string = "/";
-  show = signal(true);
-  showClass = signal('fadeIn');
+  show = signal(false);
+  showClass = signal('fadeOut');
 
   toggleDrop = () => {
     this.show.update(current => current ? false : true);

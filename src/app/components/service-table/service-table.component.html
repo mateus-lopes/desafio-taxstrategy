@@ -7,56 +7,58 @@
     <p class="ml-2">Deletado com sucesso</p>
   </div>
 </div>
-<table *ngIf="services.length > 0" class="min-w-full rounded-xl overflow-hidden">
-    <thead>
-      <tr class="bg-[#F7955B] !text-white">
-        <th *ngIf="!onlyRead" scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-          <input (change)="selectAllRows()" [checked]="allSelected()" type="checkbox" class="form-checkbox h-4 w-4" />
-        </th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Código</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Funcionário</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Data de Previsão</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Tipo de Equipamento</th>
-        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
-        <th scope="col" class="relative px-6 py-3">
-          <span class="sr-only">Editar</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody class="divide-y">
-      <tr 
-        *ngFor="let service of services; let i = index"
-        [draggable]="(ctrlPressed$ | async) && !onlyRead" 
-        (dragstart)="onDragStart($event, i)"
-        (dragover)="onDragOver($event)"
-        (drop)="onDrop($event, i)"
-        [class]="{'selected': (service.selected)}" 
-        (click)="onRowClick($event, service, i)"
-        (contextmenu)="onRightClick($event, i)"
-      >
-        <td *ngIf="!onlyRead" class="px-6 py-4 whitespace-nowrap">
-          <input (change)="selectRow(service.ref)" [checked]="service.selected" type="checkbox" class="form-checkbox h-4 w-4" />
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">#{{ service.ref }}</td>
-        <td class="text-muted px-6 py-4 whitespace-nowrap">
-          <div class="text-sm font-semibold">{{ service.employee ? service.employee : 'Sem funcionário Responsável' }}</div>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.finalDate) }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ service.equipmentType }}</td>
-        <td class="px-6 py-4 whitespace-nowrap">
-          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.employee ? service.status : 'Aguardando Funcionário')">{{ service.employee ? service.status : 'Aguardando Funcionário' }}</span>
-        </td>
-        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <a class="cursor-pointer" [routerLink]="!onlyRead ? '/services/edit/' + service.ref : '/services/report/' + service.ref">
-            <svg style="transform: rotate(90deg)" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#F7955B" stroke-width="1.89474" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          
-          </a>
-        </td>
-      </tr>
-    </tbody>
-</table>
+<section class="overflow-x-auto">
+  <table *ngIf="services.length > 0" class="min-w-full rounded-xl overflow-hidden sm:text-sm">
+      <thead>
+        <tr class="bg-[#F7955B] !text-white">
+          <th *ngIf="!onlyRead" scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+            <input (change)="selectAllRows()" [checked]="allSelected()" type="checkbox" class="form-checkbox h-4 w-4" />
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Código</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Funcionário</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Data de Previsão</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Tipo de Equipamento</th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Status</th>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">Editar</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        <tr 
+          *ngFor="let service of services; let i = index"
+          [draggable]="(ctrlPressed$ | async) && !onlyRead" 
+          (dragstart)="onDragStart($event, i)"
+          (dragover)="onDragOver($event)"
+          (drop)="onDrop($event, i)"
+          [class]="{'selected': (service.selected)}" 
+          (click)="onRowClick($event, service, i)"
+          (contextmenu)="onRightClick($event, i)"
+        >
+          <td *ngIf="!onlyRead" class="px-6 py-4 whitespace-nowrap">
+            <input (change)="selectRow(service.ref)" [checked]="service.selected" type="checkbox" class="form-checkbox h-4 w-4" />
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">#{{ service.ref }}</td>
+          <td class="text-muted px-6 py-4 whitespace-nowrap">
+            <div class="text-sm font-semibold">{{ service.employee ? service.employee : 'Sem funcionário Responsável' }}</div>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.finalDate) }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ service.equipmentType }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.employee ? service.status : 'Aguardando Funcionário')">{{ service.employee ? service.status : 'Aguardando Funcionário' }}</span>
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+            <a class="cursor-pointer" [routerLink]="!onlyRead ? '/services/edit/' + service.ref : '/services/report/' + service.ref">
+              <svg style="transform: rotate(90deg)" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#F7955B" stroke-width="1.89474" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            
+            </a>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</section>
 <div class="edit-div w-screen h-screen fixed top-0 left-0 flex flex-col justify-center items-center" *ngIf="(editRow$ | async)">
   <div class="flex flex-col gap-4 bg-[#F7F7F7] p-6 rounded-xl">
     <div class="flex justify-between items-start pb-4">
