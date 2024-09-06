@@ -18,19 +18,9 @@ import { CommonModule } from '@angular/common';
 export class MyServicesComponent {
   services: IService[] = [
     {
-      ref: "1",
+      ref: "7",
       finalDate: "2021-10-10",
-      employee: "Mateus Lopes Albano",
-      description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a",
-      status: "Em Andamento",
-      selected: false,
-      initialDate: '',
-      equipmentType: 'Notebook'
-    },
-    {
-      ref: "2",
-      finalDate: "2021-10-10",
-      employee: "Mateus Lopes Albano",
+      employee: "Mateus Albano",
       description: "Troca de óleo",
       status: "Em Andamento",
       selected: false,
@@ -38,24 +28,14 @@ export class MyServicesComponent {
       equipmentType: 'Notebook'
     },
     {
-      ref: "3",
+      ref: "10",
       finalDate: "2021-10-10",
-      employee: "Mateus Lopes Albano",
+      employee: "Mateus Albano",
       description: "Troca de óleo",
       status: "Em Andamento",
       selected: false,
       initialDate: '',
-      equipmentType: 'Computador desktop'
+      equipmentType: 'Celular'
     },
-    {
-      ref: "4",
-      finalDate: "2021-10-10",
-      employee: "Mateus Lopes Albano",
-      description: "Troca de óleo",
-      status: "Em Andamento",
-      selected: false,
-      initialDate: '',
-      equipmentType: 'Monitor'
-    }
   ]
 }

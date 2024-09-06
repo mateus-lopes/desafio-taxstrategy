@@ -7,6 +7,7 @@ import { ServicesPanelComponent } from './views/services-panel/services-panel.co
 import { ServicesReportsComponent } from './views/services-reports/services-reports.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ServicesEditComponent } from './views/services-edit/services-edit.component';
+import { ServiceReportComponent } from './views/service-report/service-report.component';
 
 export const routes: Routes = [
     {
@@ -39,8 +40,8 @@ export const routes: Routes = [
         component: ServicesReportsComponent
     },
     {
-        path: 'services/reports/:id',
-        component: ServicesEditComponent
+        path: 'services/report/:id',
+        component: ServiceReportComponent,
     },
     {
         path: 'not-found',
