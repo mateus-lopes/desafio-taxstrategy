@@ -37,14 +37,14 @@
         <td *ngIf="!onlyRead" class="px-6 py-4 whitespace-nowrap">
           <input (change)="selectRow(service.ref)" [checked]="service.selected" type="checkbox" class="form-checkbox h-4 w-4" />
         </td>
-        <td class="px-6 py-4 whitespace-nowrap">{{ service.ref }}</td>
+        <td class="px-6 py-4 whitespace-nowrap">#{{ service.ref }}</td>
         <td class="text-muted px-6 py-4 whitespace-nowrap">
           <div class="text-sm font-semibold">{{ service.employee ? service.employee : 'Sem funcionário Responsável' }}</div>
         </td>
         <td class="px-6 py-4 whitespace-nowrap">{{ formatedDate(service.finalDate) }}</td>
         <td class="px-6 py-4 whitespace-nowrap">{{ service.equipmentType }}</td>
         <td class="px-6 py-4 whitespace-nowrap">
-          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.status)">{{ service.status }}</span>
+          <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.employee ? service.status : 'Aguardando Funcionário')">{{ service.employee ? service.status : 'Aguardando Funcionário' }}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <a class="cursor-pointer" [routerLink]="!onlyRead ? '/services/edit/' + service.ref : '/services/report/' + service.ref">
@@ -73,7 +73,7 @@
       <div class="relative inline-block">
           <select class="rounded-lg px-16 py-2 border-gray-300 border-2 bg-[#F7F7F7]" [(ngModel)]="selectedOption">
           <option value="" disabled selected>Selecione um funcionário</option>
-          <option *ngFor="let employee of employees">
+          <option *ngFor="let employee of workService.employees">
             {{ employee }}
           </option>
         </select>

@@ -1,6 +1,10 @@
-import { Component, signal } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Component, signal } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { Router } from "@angular/router";
 import { BtnComponent } from "../btn/btn.component";
+import { WorkService } from '../../services/work.service';
+import { LayoutService } from "../../services/layout.service";
 
 @Component({
   selector: 'app-add-service-form',
@@ -8,14 +12,24 @@ import { BtnComponent } from "../btn/btn.component";
   imports: [
     ReactiveFormsModule,
     BtnComponent,
+    CommonModule,
   ],
   providers: [],
   templateUrl: './add-service-form.component.html',
   styleUrl: './add-service-form.component.scss'
 })
 export class AddServiceFormComponent {
+  constructor(public workService: WorkService, public layoutService: LayoutService, private router: Router) { 
+    this.addForm = new FormGroup({
+      equipmentType: new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      initialDate: new FormControl(this.currentDate, [Validators.required]),
+      finalDate: new FormControl('', [Validators.required]),
+      employee: new FormControl('', []),
+    });
+  }
   addForm!: FormGroup;
-  loading = signal(false);
+  currentDate = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
   applyDateMask(event: Event, id_input: string): void {
     const input = event.target as HTMLInputElement;
@@ -32,23 +46,21 @@ export class AddServiceFormComponent {
     this.addForm.get(id_input)?.setValue(value);
   }
 
-  currentDate = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
-
-  constructor() { 
-    this.addForm = new FormGroup({
-      equipmentType: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      initialDate: new FormControl(this.currentDate, [Validators.required]),
-      finalDate: new FormControl('', [Validators.required]),
-      employee: new FormControl('', []),
-    });
-  }
-
   submit() {
-    this.loading.set(true);
-    if(this.addForm.valid){
-      console.log(this.addForm.value);
-      this.loading.set(false);
+    try {
+      if (this.addForm.valid) {
+        this.workService.setWorks([...this.workService.works, {
+          ...this.addForm.value,
+          ref: this.workService.allWorks.length + 1,
+          status: 'Em Andamento',
+        }]);
+        this.layoutService.updateNavbarNotification();
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    } finally {
+      this.addForm.reset();
+      this.router.navigate(['/services']);
     }
   }
 }

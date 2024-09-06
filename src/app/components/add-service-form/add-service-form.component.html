@@ -4,10 +4,7 @@
         <div class="relative inline-block">
             <select class="w-full px-6 py-3 rounded-xl" id="employee" formControlName="employee">
                 <option value="" disabled selected>Selecione um funcionário</option>
-                <option value="lucas">Lucas</option>
-                <option value="joao">João</option>
-                <option value="maria">Maria</option>
-                <option value="jose">José</option>
+                <option *ngFor="let employee of workService.employees" [value]="employee">{{ employee }}</option>
             </select>
             <span class="dropdown-icon">
                 <svg style="transform: rotate(180deg)" width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -26,10 +23,7 @@
                     <option value="" disabled selected>
                         Selecione um tipo de equipamento
                     </option>
-                    <option value="laptop">Laptop</option>
-                    <option value="desktop">Desktop</option>
-                    <option value="printer">Printer</option>
-                    <option value="scanner">Scanner</option>
+                    <option *ngFor="let equipmentType of workService.equipmentTypes" [value]="equipmentType">{{ equipmentType }}</option>
                 </select>
                 <span class="dropdown-icon">
                     <svg style="transform: rotate(180deg)" width="16" height="16" viewBox="0 0 16 16" fill="none"
@@ -52,6 +46,6 @@
             formControlName="description"></textarea>
     </div>
     <div>
-        <app-btn text="Cadastrar" (click)="submit()" [disabled]="!addForm.valid" [loading]="loading()" />
+        <app-btn text="Cadastrar" (click)="submit()" [disabled]="!addForm.valid" />
     </div>
 </form>

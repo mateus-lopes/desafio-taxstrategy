@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NavDropdownComponent } from "../nav-dropdown/nav-dropdown.component";
-import { RouterLink } from '@angular/router';
 import { CommonModule, NgForOf } from '@angular/common';
-import { ILink } from "../../interfaces/navbar.interface"
+import { RouterLink } from '@angular/router';
+import { LayoutService } from '../../services/layout.service.js';
+import { NavDropdownComponent } from "../nav-dropdown/nav-dropdown.component";
 
 @Component({
   selector: 'app-nav',
@@ -17,13 +17,11 @@ import { ILink } from "../../interfaces/navbar.interface"
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
-  @Input() datas: ILink[] = [];
-  @Input() notification: number = 2;
+  constructor(public layoutService: LayoutService) {}
   @Input() currentPage: string = "/";
-
   @Output("click") onClick: EventEmitter<any> = new EventEmitter();
 
-  click() {
+  click(): void {
     this.onClick.emit();
   }
 }

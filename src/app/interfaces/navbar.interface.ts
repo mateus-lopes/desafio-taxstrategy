@@ -10,8 +10,8 @@ export interface IService {
   initialDate: string;
   finalDate: string;
   employee: string;
-  equipmentType:  'Celular' | 'TV' | 'Notebook' | 'Monitor' | 'Computador desktop';
+  equipmentType:  'Celular' | 'TV' | 'Notebook' | 'Monitor' | 'Computador desktop' | '';
   description: string;
-  status:  'Em Andamento' | 'Finalizado' |  'Aguardando Funcionário';
+  status:  'Em Andamento' | 'Finalizado' |  'Aguardando Funcionário' | '';
   selected?: boolean;
 }

@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { BtnComponent } from "../btn/btn.component";
+import { WorkService } from '../../services/work.service';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
   selector: 'app-service-table',
@@ -15,15 +17,17 @@ import { BtnComponent } from "../btn/btn.component";
     RouterModule,
     FormsModule,
     BtnComponent
-],
+  ],
   templateUrl: './service-table.component.html',
   styleUrl: './service-table.component.scss'
 })
 export class ServiceTableComponent {
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
-
+  constructor(private renderer: Renderer2, private elRef: ElementRef, public workService: WorkService, public layoutService: LayoutService) {}
+  @Input() services: IService[] = [];
+  @Input() onlyRead: boolean = false;
+  
   ctrlPressed$ = new BehaviorSubject<boolean>(false);
-
+  
   selectedOption = '';
   
   getColor(status: string) {
@@ -83,13 +87,10 @@ export class ServiceTableComponent {
     this.services.forEach((service) => (service.selected = !allSelected));
   }
 
-  @Input() services: IService[] = [];
 
   ngOnInit() {
     this.services.sort((a, b) => +a.ref - +b.ref);
   }
-  @Input() employees: string[] = ["João", "Jeferson", "Mateus"];
-  @Input() onlyRead: boolean = false;
 
   allSelected() {
     return this.services.every(service => service.selected);
@@ -98,11 +99,14 @@ export class ServiceTableComponent {
   draggedItemIndex: number[] = [];
 
   onDragStart(event: DragEvent, index: number) {
-    this.services.map((service) => {
+    this.services.forEach((service) => {
       if (service.selected) {
-        this.draggedItemIndex.push(this.services.indexOf(service));
+      this.draggedItemIndex.push(this.services.indexOf(service));
       }
-    })
+    });
+    
+    if (this.draggedItemIndex.length == 0) this.draggedItemIndex.push(index);
+
     if (event.dataTransfer) {
       event.dataTransfer.setData('text', String(index));
       event.dataTransfer.effectAllowed = 'move';
@@ -126,6 +130,8 @@ export class ServiceTableComponent {
       this.services.splice(index, 0, ...tempItems);
     }
 
+    this.workService.setWorks(this.services);
+    this.layoutService.updateNavbarNotification();
     this.draggedItemIndex = [];
   }
 
@@ -144,6 +150,9 @@ export class ServiceTableComponent {
     });
     this.editRow$.next(false);
     this.services.forEach((service) => (service.selected = false));
+    
+    this.workService.setWorks(this.services);
+    this.layoutService.updateNavbarNotification();
   }
 
   onAction(action: string) {
@@ -151,17 +160,15 @@ export class ServiceTableComponent {
 
       if (action === 'Edit') {
         this.editRow$.next(true);
-        console.log('Edit', this.selectedRowIndex);
       } else if (action === 'Delete') {
         this.services = this.services.filter((_, index) => !this.selectedRowIndex.includes(index));
-
+        this.workService.setWorks(this.services);
+        this.layoutService.updateNavbarNotification();
+        
         this.deleteRow$.next(true);
-
         setTimeout(() => {
           this.deleteRow$.next(false);
         }, 1000);
-
-        console.log('delete', this.selectedRowIndex);
       }
     }
   

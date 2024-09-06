@@ -1,9 +1,9 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service.js';
 import { NavComponent } from "../nav/nav.component";
 import { LogoComponent } from "../logo/logo.component";
-import { RouterLink } from '@angular/router';
-import { ILink } from "../../interfaces/navbar.interface"
 
 @Component({
   selector: 'app-navbar',
@@ -19,47 +19,17 @@ import { ILink } from "../../interfaces/navbar.interface"
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  user = signal(true);
+  constructor(public userService: UserService) {}
+  @Input() currentPage: string = "/";
+  @Output("click") onClick: EventEmitter<any> = new EventEmitter();
 
-  toggleUser = () => {
-    this.user.update(current => current ? false : true);
+  updateUser(): void {
+    this.userService.setUser('123', 'John Doe', 'admin');
   }
 
-  @Input() currentPage: string = "/";
-  @Input() navbar: ILink[] = [{
-    text: "Visão Geral",
-    url: "/"
-  }, {
-    text: "Meus Seviços",
-    url: "/my-services",
-    notification: 2
-  }, {
-    text: "Ordens de Serviço",
-    url: "",
-    children: [{
-      text: "Painel de Seviços",
-      url: "/services"
-    }, {
-      text: "Histórico de Seviços",
-      url: "/services/reports"
-    }, {
-      text: "Cadastrar novo serviço",
-      url: "/services/add"
-    }]
-  }, {
-    text: "Funcionários",
-    url: "",
-    children: [{
-      text: "Tabela de Funcionários",
-      url: "/employess"
-    }, {
-      text: "Cadastrar novo Funcionário",
-      url: "/employess/add"
-    }]
-  }];
-  @Input() notification: number = 1;
-
-  @Output("click") onClick: EventEmitter<any> = new EventEmitter();
+  toggleUser(): void {
+    this.userService.toggleUser();
+  }
 
   click() {
     this.onClick.emit();
