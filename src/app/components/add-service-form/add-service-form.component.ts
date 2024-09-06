@@ -32,12 +32,14 @@ export class AddServiceFormComponent {
     this.addForm.get(id_input)?.setValue(value);
   }
 
+  currentDate = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
   constructor() { 
     this.addForm = new FormGroup({
       equipmentType: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
-      initialDate: new FormControl('', [Validators.required, Validators.pattern('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$')]),
-      finalDate: new FormControl('', [Validators.required, Validators.pattern('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$')]),
+      initialDate: new FormControl(this.currentDate, [Validators.required]),
+      finalDate: new FormControl('', [Validators.required]),
       employee: new FormControl('', []),
     });
   }

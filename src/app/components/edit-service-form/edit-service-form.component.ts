@@ -52,8 +52,8 @@ export class EditServiceFormComponent {
     this.addForm = new FormGroup({
       equipmentType: new FormControl(this.service.equipmentType, [Validators.required]),
       description: new FormControl(this.service.description, [Validators.required]),
-      initialDate: new FormControl(this.service.initialDate, [Validators.required, Validators.pattern('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$')]),
-      finalDate: new FormControl(this.service.finalDate, [Validators.required, Validators.pattern('^(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}$')]),
+      initialDate: new FormControl(this.service.initialDate, [Validators.required]),
+      finalDate: new FormControl(this.service.finalDate, [Validators.required]),
       employee: new FormControl(this.service.employee, []),
     });
   }

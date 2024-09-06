@@ -47,7 +47,7 @@
           <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="getColor(service.status)">{{ service.status }}</span>
         </td>
         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-          <a class="cursor-pointer" [routerLink]="'/services/edit/' + service.ref">
+          <a class="cursor-pointer" [routerLink]="!onlyRead ? '/services/' + service.ref : '/services/report/' + service.ref">
             <svg style="transform: rotate(90deg)" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#F7955B" stroke-width="1.89474" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

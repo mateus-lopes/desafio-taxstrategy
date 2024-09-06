@@ -39,6 +39,10 @@ export const routes: Routes = [
         component: ServicesReportsComponent
     },
     {
+        path: 'services/reports/:id',
+        component: ServicesEditComponent
+    },
+    {
         path: 'not-found',
         component: NotFoundComponent
     },
