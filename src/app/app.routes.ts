@@ -10,6 +10,7 @@ import { ServicesEditComponent } from './views/services-edit/services-edit.compo
 import { ServiceReportComponent } from './views/service-report/service-report.component';
 import { LoginComponent } from './views/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { EmployeesPanelComponent } from './views/employees-panel/employees-panel.component';
 
 export const routes: Routes = [
     {
@@ -54,6 +55,11 @@ export const routes: Routes = [
     {
         path: 'services/report/:id',
         component: ServiceReportComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'employees',
+        component: EmployeesPanelComponent,
         canActivate: [AuthGuard]
     },
     {

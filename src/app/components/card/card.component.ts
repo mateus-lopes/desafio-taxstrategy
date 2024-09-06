@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IService } from '../../interfaces/navbar.interface';
+import { IService } from '../../interfaces/work.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent {
   @Input() service: IService = {
-    ref: '000',
+    id: '000',
     equipmentType: 'Notebook',
     finalDate: '00/00/0000',
     initialDate: '00/00/0000',

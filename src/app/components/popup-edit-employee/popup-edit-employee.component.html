@@ -1,0 +1,116 @@
+<div
+  class="edit-div w-screen h-screen fixed top-0 left-0 flex flex-col justify-center items-center"
+>
+  <div class="flex flex-col gap-4 bg-[#F7F7F7] p-8 rounded-xl">
+    <div class="flex justify-between items-start pb-4">
+      <h2 class="pt-1 text-xl">Editar Usuário</h2>
+      <button (click)="closePopup()">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M11.9999 13.414L17.6569 19.071C17.8455 19.2532 18.0982 19.354 18.3603 19.3517C18.6225 19.3494 18.8734 19.2443 19.0588 19.0588C19.2442 18.8734 19.3493 18.6226 19.3516 18.3604C19.3539 18.0982 19.2531 17.8456 19.0709 17.657L13.4139 12L19.0709 6.34303C19.2531 6.15443 19.3539 5.90182 19.3516 5.63963C19.3493 5.37743 19.2442 5.12662 19.0588 4.94121C18.8734 4.7558 18.6225 4.65063 18.3603 4.64835C18.0982 4.64607 17.8455 4.74687 17.6569 4.92903L11.9999 10.586L6.34295 4.92903C6.15349 4.75137 5.90236 4.65439 5.64268 4.65861C5.38299 4.66283 5.13514 4.76791 4.95155 4.95162C4.76797 5.13533 4.66307 5.38326 4.65903 5.64295C4.655 5.90263 4.75216 6.1537 4.92995 6.34303L10.5859 12L4.92895 17.657C4.83343 17.7493 4.75725 17.8596 4.70484 17.9816C4.65244 18.1036 4.62485 18.2348 4.62369 18.3676C4.62254 18.5004 4.64784 18.6321 4.69812 18.755C4.7484 18.8779 4.82266 18.9895 4.91655 19.0834C5.01044 19.1773 5.1221 19.2516 5.24499 19.3018C5.36789 19.3521 5.49957 19.3774 5.63235 19.3763C5.76513 19.3751 5.89635 19.3475 6.01835 19.2951C6.14035 19.2427 6.2507 19.1665 6.34295 19.071L11.9999 13.414Z"
+            fill="#787878"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="flex flex-col gap-4">
+      <form>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="name" class="block">Nome:</label>
+            <input
+              class="rounded-lg px-4 py-2 my-2 border-gray-300 border-2 bg-[#F7F7F7]"
+              type="text"
+              id="name"
+              name="name"
+              [(ngModel)]="employee.name"
+            />
+          </div>
+          <div>
+            <label for="email" class="block">Email:</label>
+            <input
+              class="rounded-lg px-4 py-2 my-2 border-gray-300 border-2 bg-[#F7F7F7]"
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="employee.email"
+            />
+          </div>
+          <div>
+            <label for="phone" class="block">Gênero:</label>
+            <div class="relative block">
+              <select
+                class="w-full rounded-lg px-4 py-2 my-2 border-gray-300 border-2 bg-[#F7F7F7]"
+                id="userType"
+                name="userType"
+                [(ngModel)]="employee.gender"
+              >
+                <option [value]="true">Masculino</option>
+                <option [value]="false">Feminino</option>
+              </select>
+              <span class="dropdown-icon">
+                <svg
+                  style="transform: rotate(180deg)"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474"
+                    stroke="#BFBFBF"
+                    stroke-width="1.89474"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div>
+            <label for="userType" class="block">Tipo de Usuário:</label>
+            <div class="relative block">
+              <select
+                class="w-full rounded-lg px-4 py-2 my-2 border-gray-300 border-2 bg-[#F7F7F7]"
+                id="userType"
+                name="userType"
+                [(ngModel)]="employee.userType"
+              >
+                <option value="Suporte">Suporte</option>
+                <option value="Funcionário">User</option>
+              </select>
+              <span class="dropdown-icon">
+                <svg
+                  style="transform: rotate(180deg)"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474"
+                    stroke="#BFBFBF"
+                    stroke-width="1.89474"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+      <app-btn text="Salvar" (click)="setEmployee(employee)" />
+    </div>
+  </div>
+</div>

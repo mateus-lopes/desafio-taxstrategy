@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { IService } from '../interfaces/navbar.interface';
+import { IService } from '../interfaces/work.interface';
 import { Observable, of } from 'rxjs';
 import { UserService } from './user.service';
+import { EmployeeService } from './employee.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,123 +10,123 @@ import { UserService } from './user.service';
 export class WorkService {
   public allWorks: IService[] = [
     {
-      ref: "8",
-      finalDate: "2023-08-14",
+      id: "8",
+      finalDate: "14/08/2023",
       employee: "Carlos Silva",
       description: "Substituição da bateria de celular.",
       status: "Em Andamento",
       selected: false,
-      initialDate: "2023-08-10",
+      initialDate: "10/08/2023",
       equipmentType: "Celular"
     },
     {
-      ref: "12",
-      finalDate: "2023-08-20",
+      id: "12",
+      finalDate: "20/08/2023",
       employee: "",
       description: "Troca do display quebrado de notebook. Aguardando definição do funcionário responsável.",
       status: "Aguardando Funcionário",
       selected: false,
-      initialDate: "2023-08-19",
+      initialDate: "19/08/2023",
       equipmentType: "Notebook"
     },
     {
-      ref: "9",
-      finalDate: "2023-08-16",
+      id: "9",
+      finalDate: "16/08/2023",
       employee: "Jeferson Santos",
       description: "Troca do cabo de alimentação de monitor.",
       status: "Em Andamento",
       selected: false,
-      initialDate: "2023-08-12",
+      initialDate: "12/08/2023",
       equipmentType: "Monitor"
     },
     {
-      ref: "7",
-      finalDate: "2023-08-18",
+      id: "7",
+      finalDate: "18/08/2023",
       employee: "Mateus Albano",
       description: "Atualização de sistema operacional e formatação de notebook.",
       status: "Em Andamento",
       selected: false,
-      initialDate: "2023-08-13",
+      initialDate: "13/08/2023",
       equipmentType: "Notebook"
     },
     {
-      ref: "10",
-      finalDate: "2023-08-14",
+      id: "10",
+      finalDate: "14/08/2023",
       employee: "Mateus Albano",
       description: "Substituição do conector de carga de celular.",
       status: "Em Andamento",
       selected: false,
-      initialDate: "2023-08-11",
+      initialDate: "11/08/2023",
       equipmentType: "Celular"
     },
     {
-      ref: "11",
-      finalDate: "2023-08-17",
+      id: "11",
+      finalDate: "17/08/2023",
       employee: "",
       description: "Troca do painel frontal da TV de 55 polegadas.",
       status: "Aguardando Funcionário",
       selected: false,
-      initialDate: "2023-08-15",
+      initialDate: "15/08/2023",
       equipmentType: "TV"
     },
     {
-      ref: "1",
-      finalDate: "2023-08-05",
+      id: "1",
+      finalDate: "05/08/2023",
       employee: "João Pereira",
       description: "Substituição da tela trincada de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-08-02",
+      initialDate: "02/08/2023",
       equipmentType: "Celular"
     },
     {
-      ref: "2",
-      finalDate: "2023-08-07",
+      id: "2",
+      finalDate: "07/08/2023",
       employee: "João Pereira",
       description: "Troca do microfone de celular com defeito.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-08-03",
+      initialDate: "03/08/2023",
       equipmentType: "Celular"
     },
     {
-      ref: "3",
-      finalDate: "2023-08-09",
+      id: "3",
+      finalDate: "09/08/2023",
       employee: "Jeferson Santos",
       description: "Reparo no circuito interno de smartphone com problema de aquecimento.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-08-05",
+      initialDate: "2023/08/05",
       equipmentType: "Celular"
     },
     {
-      ref: "4",
-      finalDate: "2023-08-12",
+      id: "4",
+      finalDate: "2023/08/12",
       employee: "Mateus Albano",
       description: "Troca do touchpad de notebook que não responde.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-08-08",
+      initialDate: "2023/08/08",
       equipmentType: "Notebook"
     },
     {
-      ref: "5",
-      finalDate: "2023-08-03",
+      id: "5",
+      finalDate: "2023/08/03",
       employee: "João Pereira",
       description: "Troca do sensor de proximidade de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-07-31",
+      initialDate: "2023/07/31",
       equipmentType: "Celular"
     },
     {
-      ref: "6",
-      finalDate: "2023-08-06",
+      id: "6",
+      finalDate: "2023/08/06",
       employee: "João Pereira",
       description: "Reparo do botão de volume de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: "2023-08-01",
+      initialDate: "2023/08/01",
       equipmentType: "Celular"
     }
   ];
@@ -133,7 +134,7 @@ export class WorkService {
   private _myWorks: IService[] = [];
   public reports: IService[] = [];
   public work: IService = {
-    ref: '',
+    id: '',
     finalDate: '',
     employee: '',
     description: '',
@@ -142,10 +143,10 @@ export class WorkService {
     initialDate: '',
     equipmentType: ''
   };
-  public employees: string[] = ['Carlos Silva', 'Jeferson Santos', 'Mateus Albano', 'João Pereira'];
+  public employees: string[] = this.employeeService.allEmployees.map(employee => employee.name);
   public equipmentTypes: string[] = ['Celular', 'TV', 'Notebook', 'Monitor', 'Computador desktop'];
 
-  constructor(public userService: UserService) {
+  constructor(public userService: UserService, public employeeService: EmployeeService) {
     this.getWorks();
     this.getReports();
     this.getMyWorks();
@@ -164,8 +165,8 @@ export class WorkService {
     return of(this.works);
   }
 
-  getWork(ref: string): IService {
-    this.work = this.works.find(work => work.ref == ref) || this.work;
+  getWork(id: string): IService {
+    this.work = this.works.find(work => work.id == id) || this.work;
     return this.work;
   }
   
@@ -184,12 +185,12 @@ export class WorkService {
     this.getMyWorks();
   }
 
-  completeWork(ref: string): void {
-    const completedWork = this.works.find(work => work.ref === ref);
+  completeWork(id: string): void {
+    const completedWork = this.works.find(work => work.id === id);
     if (completedWork) {
       completedWork.status = 'Finalizado';
       this.reports.push(completedWork);
-      this.works = this.works.filter(work => work.ref !== ref);
+      this.works = this.works.filter(work => work.id !== id);
       this.getMyWorks();
     }
   }

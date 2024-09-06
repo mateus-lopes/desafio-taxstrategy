@@ -51,7 +51,7 @@ export class AddServiceFormComponent {
       if (this.addForm.valid) {
         this.workService.setWorks([...this.workService.works, {
           ...this.addForm.value,
-          ref: this.workService.allWorks.length + 1,
+          id: this.workService.allWorks.length + 1,
           status: 'Em Andamento',
         }]);
         this.layoutService.updateNavbarNotification();

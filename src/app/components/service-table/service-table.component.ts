@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, Renderer2, ElementRef } from '@angular/core';
-import { IService } from '../../interfaces/navbar.interface';
+import { IService } from '../../interfaces/work.interface';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -24,6 +24,7 @@ import { LayoutService } from '../../services/layout.service';
 export class ServiceTableComponent {
   constructor(private renderer: Renderer2, private elRef: ElementRef, public workService: WorkService, public layoutService: LayoutService) {}
   @Input() services: IService[] = [];
+  @Input() headers: string[] = ['Código', 'Funcionário', 'Data de Previsão', 'Tipo de Equipamento', 'Status'];
   @Input() onlyRead: boolean = false;
   
   ctrlPressed$ = new BehaviorSubject<boolean>(false);
@@ -67,18 +68,14 @@ export class ServiceTableComponent {
     }
   }
 
-  formatedDate(date: string) {
-    return new Date(date).toLocaleDateString();
-  }
-
   onRowClick(event: MouseEvent, service: IService, index: number) {
     if (event.ctrlKey && !this.onlyRead) {
-      this.selectRow(service.ref);
+      this.selectRow(service.id);
     }
   }
 
-  selectRow(ref: string) {
-    const service = this.services.find((service) => service.ref === ref);
+  selectRow(id: string) {
+    const service = this.services.find((service) => service.id === id);
     if (service) service.selected = !service.selected;
   }
   
@@ -89,7 +86,7 @@ export class ServiceTableComponent {
 
 
   ngOnInit() {
-    this.services.sort((a, b) => +a.ref - +b.ref);
+    this.services.sort((a, b) => +a.id - +b.id);
   }
 
   allSelected() {
@@ -121,7 +118,6 @@ export class ServiceTableComponent {
   onDrop(event: DragEvent, index: number) {
     event.preventDefault();
 
-    console.log('draggedItemIndex', this.draggedItemIndex);
     const draggedIndices = this.draggedItemIndex.sort((a, b) => a - b);
 
     if (draggedIndices.length > 0 && draggedIndices[0] !== index) {
@@ -144,7 +140,6 @@ export class ServiceTableComponent {
   deleteRow$ = new BehaviorSubject<boolean>(false);
 
   setNewEmployee(employee: string) {
-    console.log('setNewEmployee', this.selectedRowIndex)
     this.selectedRowIndex.forEach((index) => {
       this.services[index].employee = employee;
       this.services[index].status = "Em Andamento";

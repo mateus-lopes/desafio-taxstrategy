@@ -1,7 +1,7 @@
 import { Component, Input, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BtnComponent } from '../btn/btn.component';
-import { IService } from '../../interfaces/navbar.interface';
+import { IService } from '../../interfaces/work.interface';
 
 @Component({
   selector: 'app-report-service-form',
@@ -23,7 +23,7 @@ export class ReportServiceFormComponent {
   }
 
   service: IService = {
-    ref: "1",
+    id: "1",
     finalDate: "02/04/2024",
     employee: "Mateus Albano",
     description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a",
@@ -61,7 +61,6 @@ export class ReportServiceFormComponent {
   submit() {
     this.loading.set(true);
     if(this.addForm.valid){
-      console.log(this.addForm.value);
       this.loading.set(false);
     }
   }

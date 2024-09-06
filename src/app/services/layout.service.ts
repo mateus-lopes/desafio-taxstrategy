@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { WorkService } from './work.service';
-import { ILink, IService } from '../interfaces/navbar.interface';
+import { ILink } from '../interfaces/navbar.interface';
+import { IService } from '../interfaces/work.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -45,10 +46,7 @@ export class LayoutService {
         url: "",
         children: [{
           text: "Tabela de Funcionários",
-          url: "/employess"
-        }, {
-          text: "Cadastrar novo Funcionário",
-          url: "/employess/add"
+          url: "/employees"
         }]
       }];
     });

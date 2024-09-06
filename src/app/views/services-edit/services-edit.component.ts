@@ -60,9 +60,9 @@ export class ServicesEditComponent implements OnInit {
     try {
       if (this.editForm.valid) {
         this.workService.setWorks(this.workService.works.map(work => {
-          if (work.ref === this.id) {
+          if (work.id === this.id) {
             return {
-              ref: work.ref,
+              id: work.id,
               status: this.editForm.value.employee ? 'Em Andamento' : 'Aguardando Funcionário',
               ...this.editForm.value,
             };
@@ -97,7 +97,7 @@ export class ServicesEditComponent implements OnInit {
 
   delete() {
     try {
-      this.workService.setWorks(this.workService.works.filter(work => work.ref !== this.id));
+      this.workService.setWorks(this.workService.works.filter(work => work.id !== this.id));
       this.layoutService.updateNavbarNotification();
     } catch (error) {
       console.error('An error occurred:', error);

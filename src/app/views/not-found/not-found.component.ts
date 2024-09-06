@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
-import { LayoutComponent } from '../../components/layout/layout.component';
+import { BtnComponent } from "../../components/btn/btn.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
   standalone: true,
   imports: [
-    LayoutComponent
-  ],
+    BtnComponent,
+    RouterLink,
+],
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.scss'
 })

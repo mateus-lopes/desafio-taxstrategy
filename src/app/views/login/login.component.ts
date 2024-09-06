@@ -12,7 +12,7 @@ import { BtnComponent } from "../../components/btn/btn.component";
     FormsModule,
     CommonModule,
     BtnComponent
-],
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'] 
 })
@@ -22,6 +22,14 @@ export class LoginComponent {
   errorMessage: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  ngAfterViewInit(): void {
+    this.callFunctionAfterPageLoad();
+  }
+
+  callFunctionAfterPageLoad(): void {
+    this.authService.isLoggedIn() == true ? this.router.navigate(['/dashboard']) : null;
+  }
 
   login(): void {
     if (this.authService.login(this.username, this.password)) {

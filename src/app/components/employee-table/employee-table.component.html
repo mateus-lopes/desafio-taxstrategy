@@ -1,0 +1,95 @@
+<div role="alert" class="alert-info fixed bottom-4 right-4 p-4 border-none bg-blue-100 border text-blue-800 rounded-lg shadow-md" *ngIf="(deleteRow$ | async)">
+    <div class="flex items-center">
+      <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 16V12M12 8H12.01" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+      <p class="ml-2">Deletado com sucesso</p>
+    </div>
+  </div>
+  <section class="overflow-x-auto">
+    <table *ngIf="employees.length > 0" class="min-w-full rounded-xl overflow-hidden sm:text-sm md:text-base">
+        <thead>
+          <tr class="bg-[#F7955B] !text-white">
+            <th *ngIf="!onlyRead" scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+              <input (change)="selectAllRows()" [checked]="allSelected()" type="checkbox" class="form-checkbox h-4 w-4" />
+            </th>
+              <th scope="col" *ngFor="let header of headers" class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">{{ header }}</th>
+            <th scope="col" class="relative px-6 py-3">
+              <span class="sr-only">Editar</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y">
+          <tr 
+            *ngFor="let employee of employees; let i = index"
+            [draggable]="(ctrlPressed$ | async) && !onlyRead" 
+            (dragstart)="onDragStart($event, i)"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event, i)"
+            [class]="{'selected': (employee.selected)}" 
+            (click)="onRowClick($event, employee, i)"
+            (contextmenu)="onRightClick($event, i)"
+          >
+            <td *ngIf="!onlyRead" class="px-6 py-4 whitespace-nowrap">
+              <input (change)="selectRow(employee.id)" [checked]="employee.selected" type="checkbox" class="form-checkbox h-4 w-4" />
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">#{{ employee.id }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ employee.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ employee.email }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ employee.gender ? 'Masculino' : 'Feminino' }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full" [class]="employee.userType === 'Admin' ? 'bg-red-100 text-red-800' : employee.userType === 'Suporte' ? 'bg-yellow-100 text-yellow-800' : 'bg-blue-100 text-blue-800'">{{ employee.userType }}</span>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </section>
+  <section *ngIf="(editRow$ | async)">
+    <app-popup-edit-employee [employee]="employees[selectedRowIndex[0]]" (close)="editRow$.next(false)" (submit)="setEmployee($event)"  />
+  </section>
+  
+  <ul 
+    *ngIf="showContextMenu && !onlyRead" 
+    [ngStyle]="{'top.px': contextMenuPosition.y, 'left.px': contextMenuPosition.x}" 
+    class="context-menu cursor-pointer"
+  >
+    <li (click)="onAction('Edit')" class="flex items-center gap-2 hover:bg-gray-200 p-2 border-b">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 5.00004H6C5.46957 5.00004 4.96086 5.21075 4.58579 5.58583C4.21071 5.9609 4 6.46961 4 7.00004V18C4 18.5305 4.21071 19.0392 4.58579 19.4143C4.96086 19.7893 5.46957 20 6 20H17C17.5304 20 18.0391 19.7893 18.4142 19.4143C18.7893 19.0392 19 18.5305 19 18V13M17.586 3.58604C17.7705 3.39502 17.9912 3.24266 18.2352 3.13784C18.4792 3.03302 18.7416 2.97785 19.0072 2.97554C19.2728 2.97323 19.5361 3.02384 19.7819 3.1244C20.0277 3.22496 20.251 3.37346 20.4388 3.56125C20.6266 3.74904 20.7751 3.97234 20.8756 4.21813C20.9762 4.46392 21.0268 4.72728 21.0245 4.99284C21.0222 5.2584 20.967 5.52084 20.8622 5.76485C20.7574 6.00886 20.605 6.22955 20.414 6.41404L11.828 15H9V12.172L17.586 3.58604Z" stroke="#F7955B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Editar
+    </li>
+    <li (click)="onAction('Delete')" class="flex items-center gap-2 hover:bg-gray-200 p-2 ">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 7H20M10 11V17M14 11V17M5 7L6 19C6 19.5304 6.21071 20.0391 6.58579 20.4142C6.96086 20.7893 7.46957 21 8 21H16C16.5304 21 17.0391 20.7893 17.4142 20.4142C17.7893 20.0391 18 19.5304 18 19L19 7M9 7V4C9 3.73478 9.10536 3.48043 9.29289 3.29289C9.48043 3.10536 9.73478 3 10 3H14C14.2652 3 14.5196 3.10536 14.7071 3.29289C14.8946 3.48043 15 3.73478 15 4V7" stroke="#F7955B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Deletar
+    </li>
+  </ul>
+  
+  <div *ngIf="employees.length === 0" class="flex mt-16 justify-center mx-auto gap-3 items-center">
+    <svg
+      width="32" 
+      height="32" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path 
+        d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" 
+        stroke="#9ca3af" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      />
+      <path 
+        d="M12 16V12M12 8H12.01" 
+        stroke="#9ca3af" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+      />
+    </svg>
+    <p class="text-center text-2xl text-[#9ca3af] mt-2">Nenhum serviço cadastrado</p>
+  </div>
