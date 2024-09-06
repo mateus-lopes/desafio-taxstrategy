@@ -35,7 +35,7 @@ export class LoginComponent {
     if (this.authService.login(this.username, this.password)) {
       this.router.navigate(['/dashboard']);
     } else {
-      this.errorMessage = 'Login failed. Please check your username and password.';
+      this.errorMessage = 'Falha no login. Verifique seu nome de usuário e senha.';
     }
   }
 }
