@@ -6,7 +6,7 @@
                     class="h-full custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 block"
                 >
                     <h1 class="text-xl font-bold text-black pb-4">Sistema para de Manutenção de Equipamentos</h1>
-                    <p class="text-gray-500">Um sistema web para gestão de manutenção de equipamentos desenvolvido por <a class="text-blue-400 underline" href="https://github.com/mateus-lopes">mateus-lopes</a> permitindo o usuário planejar e controlar as atividades de manutenção.</p>
+                    <p class="text-gray-500 text-sm">Um sistema web para gestão de manutenção de equipamentos desenvolvido por <a class="text-blue-400 underline" href="https://github.com/mateus-lopes">mateus-lopes</a> permitindo o usuário planejar e controlar as atividades de manutenção.</p>
                 </div>
             </div>
             <div class="w-2/6 px-2 pb-2">
@@ -14,7 +14,7 @@
                     class="h-full custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 flex flex-col justify-between"
                 >
                     <h1 class="text-xl font-bold text-black">Seu Progresso Atual</h1>
-                    <div class="w-full bg-gray-200 rounded-full h-3 relative mb-8">
+                    <div class="w-full bg-gray-200 rounded-full h-3 relative mb-4">
                         <span class="absolute -top-6 text-sm text-gray-500">5 / 8</span>
                         <div class="bg-[#F7955B] h-3 rounded-full" style="width: 62.5%;"></div>
                     </div>
@@ -41,24 +41,35 @@
                 </div>
             </div>
             <div class="w-3/12 p-2">
+                
                 <div
-                    class="custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 flex flex-col gap-4 justify-start"
+                    class="custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 block"
+                >
+                    <h1 class="text-xl font-bold text-black pb-4">Histórico</h1>
+                    <ul class="flex flex-col gap-3">
+                        <li class="hover:underline text-sm cursor-pointer" *ngFor="let report of workService.reports.slice(-5).reverse()" [routerLink]="'/services/report/' + report.ref">
+                           <span class="bg-gray-100 p-1 rounded">#{{ report.ref }}</span>
+                           <span> {{ report.employee }} - {{ report.finalDate }} </span>
+                        </li>
+                    </ul>
+                </div>
+                <div
+                    class="mt-4 custom-shadow bg-white border-white border-2 transition-all rounded-xl overflow-hidden p-4 flex flex-col gap-4 justify-start"
                 >
                     <app-btn
                         link="/services/add"
+                        variant="secondary"
                         size="block"
                         [text]="'Cadastrar um Serviço'"
                         routerLink="/services/add"
                     ></app-btn>
                     <app-btn
                         link="/services"
+                        variant="secondary"
                         size="block"
                         [text]="'Concluir um Serviço'"
                         routerLink="/services"
                     ></app-btn>
-                    <p class="text-center text-gray-500">
-                        TaxStrategy 2024 | SME
-                    </p>
                 </div>
             </div>
         </div>

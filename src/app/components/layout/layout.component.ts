@@ -16,4 +16,5 @@ export class LayoutComponent {
   @Input() path: string = "";
   @Input() page: string = "";
   @Input() currentPage: string = "/";
+  
 }

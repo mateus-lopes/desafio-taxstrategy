@@ -8,44 +8,58 @@ import { ServicesReportsComponent } from './views/services-reports/services-repo
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ServicesEditComponent } from './views/services-edit/services-edit.component';
 import { ServiceReportComponent } from './views/service-report/service-report.component';
+import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/dashboard',
+        redirectTo: '/login',
         pathMatch: 'full'
     },
     {
+        path: 'login',
+        component: LoginComponent,
+    },
+    {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'my-services',
-        component: MyServicesComponent
+        component: MyServicesComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'services',
-        component: ServicesPanelComponent
+        component: ServicesPanelComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'services/edit/:id',
-        component: ServicesEditComponent
+        component: ServicesEditComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'services/add',
-        component: ServicesAddComponent
+        component: ServicesAddComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'services/reports',
-        component: ServicesReportsComponent
+        component: ServicesReportsComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'services/report/:id',
         component: ServiceReportComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: 'not-found',
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        canActivate: [AuthGuard]
     },
     {
         path: '**',

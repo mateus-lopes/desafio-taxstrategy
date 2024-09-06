@@ -3,7 +3,7 @@
         <div class="w-80 fixed h-screen">
             <app-navbar [currentPage]="currentPage" />
         </div>
-        <div class="w-3/4 px-8 ml-80 mt-28 mb-16">
+        <div class="w-3/4 px-8 ml-80 mt-28 mb-16 relative">
             <app-title-page [path]="path" [page]="page" />
             <ng-content select="[main]"></ng-content>
             <ng-content select="[footer]"></ng-content>

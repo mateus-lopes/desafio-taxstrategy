@@ -22,7 +22,7 @@ export class LayoutService {
       this.myWorks = works;
       this.navbar = [{
         text: "Visão Geral",
-        url: "/"
+        url: "/dashboard"
       }, {
         text: "Meus Serviços",
         url: "/my-services",

@@ -1,3 +1,6 @@
+<div role="alert" class="alert-info w-full px-4 py-2 mb-4 border-none bg-blue-100 border text-blue-800 rounded-lg custom-shadow">
+    Relatório de Serviço
+</div>
 <form [formGroup]="addForm">
     <div class="flex gap-8">
         <div class="w-2/3 flex flex-col gap-3 mb-5">
@@ -25,8 +28,5 @@
         <label for="description">Descrição</label>
         <textarea class="px-6 py-3 rounded-xl" id="description" [rows]="calculateRows(service.description)" placeholder="Escreva aqui..."
             formControlName="description" readonly></textarea>
-    </div>
-    <div role="alert" class="alert-info w-full px-4 py-2 border-none bg-green-100 border text-green-800 rounded-lg custom-shadow">
-        Finalziado
     </div>
 </form>

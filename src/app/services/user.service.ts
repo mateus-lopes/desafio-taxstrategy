@@ -62,4 +62,12 @@ export class UserService {
   toggleUser(): void {
     this._gender = !this._gender
   }
+
+  getUser(id: string): any {
+    return {
+      id: this._id,
+      name: this._name,
+      nickname: this._nickname
+    };
+  }
 }

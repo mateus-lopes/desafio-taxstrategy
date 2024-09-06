@@ -163,6 +163,11 @@ export class WorkService {
     this.works = this.allWorks.filter(work => work.status != 'Finalizado');
     return of(this.works);
   }
+
+  getWork(ref: string): IService {
+    this.work = this.works.find(work => work.ref == ref) || this.work;
+    return this.work;
+  }
   
   getMyWorks(): Observable<IService[]> {
     this.myWorks = this.works.filter(work => work.employee == this.userService.nickname);
@@ -177,6 +182,16 @@ export class WorkService {
   setWorks(works: IService[]): void {
     this.works = works;
     this.getMyWorks();
+  }
+
+  completeWork(ref: string): void {
+    const completedWork = this.works.find(work => work.ref === ref);
+    if (completedWork) {
+      completedWork.status = 'Finalizado';
+      this.reports.push(completedWork);
+      this.works = this.works.filter(work => work.ref !== ref);
+      this.getMyWorks();
+    }
   }
 }
 

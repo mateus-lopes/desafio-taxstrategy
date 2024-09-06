@@ -4,8 +4,9 @@ import { CardDashboardComponent } from '../../components/card-dashboard/card-das
 import { BtnComponent } from '../../components/btn/btn.component';
 import { Chart, registerables } from 'chart.js';
 import { IService } from '../../interfaces/navbar.interface';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { WorkService } from '../../services/work.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +22,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements AfterViewInit {
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, public workService: WorkService, public router: Router) {
     Chart.register(...registerables);
   };
 

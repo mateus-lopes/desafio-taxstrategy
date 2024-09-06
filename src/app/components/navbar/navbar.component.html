@@ -15,7 +15,7 @@
     <app-nav [currentPage]="currentPage" />
 </section>
 <section class="absolute bottom-0 left-0 w-full p-8">
-    <div class="flex justify-start items-center cursor-pointer gap-2 hover:text-red-500">
+    <div (click)="logout()" class="flex justify-start items-center cursor-pointer gap-2 hover:text-red-500">
         <img ngSrc="./assets/icon_logout.svg" width="24" height="24" alt="" />
         <p>Sair</p>
     </div>

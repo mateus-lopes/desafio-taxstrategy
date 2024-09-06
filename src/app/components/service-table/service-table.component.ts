@@ -104,7 +104,7 @@ export class ServiceTableComponent {
       this.draggedItemIndex.push(this.services.indexOf(service));
       }
     });
-    
+
     if (this.draggedItemIndex.length == 0) this.draggedItemIndex.push(index);
 
     if (event.dataTransfer) {
@@ -147,6 +147,7 @@ export class ServiceTableComponent {
     console.log('setNewEmployee', this.selectedRowIndex)
     this.selectedRowIndex.forEach((index) => {
       this.services[index].employee = employee;
+      this.services[index].status = "Em Andamento";
     });
     this.editRow$.next(false);
     this.services.forEach((service) => (service.selected = false));
