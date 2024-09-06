@@ -1,11 +1,11 @@
-import { Component, AfterViewInit  } from '@angular/core';
+import { Component, AfterViewInit, Renderer2   } from '@angular/core';
 import { LayoutComponent } from '../../components/layout/layout.component';
-import { CommonModule } from '@angular/common';
 import { CardDashboardComponent } from '../../components/card-dashboard/card-dashboard.component';
 import { BtnComponent } from '../../components/btn/btn.component';
 import { Chart, registerables } from 'chart.js';
 import { IService } from '../../interfaces/navbar.interface';
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +21,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements AfterViewInit {
+  constructor(private renderer: Renderer2) {
+    Chart.register(...registerables);
+  };
 
   services: IService[] = [
     { ref: "1", finalDate: "02/04/2024", employee: "João", description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a", status: "Finalizado", selected: false, initialDate: '02/08/2024', equipmentType: 'Notebook' },
@@ -55,14 +58,10 @@ export class DashboardComponent implements AfterViewInit {
   formatMonth = (month: string): string => {
     return this.months[month as keyof typeof this.months];
   };
-
-  constructor() {
-    Chart.register(...registerables);
-  };
   
   ngAfterViewInit() {
-    const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-
+    const ctx = this.renderer.selectRootElement('#myChart') as HTMLCanvasElement;
+    
     const completedServicesByMonth: Record<string, number> = {};
 
     this.services.forEach(service => {
