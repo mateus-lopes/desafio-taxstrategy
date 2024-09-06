@@ -2,10 +2,21 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(public userService: UserService) {   }
+  constructor(public userService: UserService) {}
+
+  isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
+
+  isLoggedIn(): boolean {
+    if (this.isBrowser()) {
+      return localStorage.getItem('currentUser') !== null;
+    }
+    return false;
+  }
 
   login(username: string, password: string): boolean {
     if (username != '' && password != '') {
@@ -18,14 +29,15 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
-  }
-
-  isLoggedIn(): boolean {
-    return localStorage.getItem('currentUser') !== null;
+    if (this.isBrowser()) {
+      localStorage.removeItem('currentUser');
+    }
   }
 
   getCurrentUser(): any {
-    return JSON.parse(localStorage.getItem('currentUser') || '{}');
+    if (this.isBrowser()) {
+      return JSON.parse(localStorage.getItem('currentUser') || '{}');
+    }
+    return null;
   }
 }
