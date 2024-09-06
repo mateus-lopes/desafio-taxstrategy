@@ -30,7 +30,8 @@ export class ReportServiceFormComponent {
     status: "Finalizado",
     selected: false,
     initialDate: '02/08/2024',
-    equipmentType: 'Notebook'
+    equipmentType: 'Notebook',
+    description_work: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando:\n \n- Teste 1 \n- Teste 2 \n- Teste 3"
   };
   
   applyDateMask(event: Event, id_input: string): void {
@@ -55,6 +56,7 @@ export class ReportServiceFormComponent {
       initialDate: new FormControl(this.service.initialDate, [Validators.required]),
       finalDate: new FormControl(this.service.finalDate, [Validators.required]),
       employee: new FormControl(this.service.employee, []),
+      description_work: new FormControl(this.service.description_work, [Validators.required]),
     });
   }
 

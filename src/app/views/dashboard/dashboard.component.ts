@@ -26,6 +26,57 @@ export class DashboardComponent implements AfterViewInit {
     Chart.register(...registerables);
   };
 
+  services: IService[] = [
+    {
+      id: "1", finalDate: "02/04/2024", employee: "João", description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a", status: "Finalizado", selected: false, initialDate: '02/08/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "2", finalDate: "02/05/2024", employee: "João", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "3", finalDate: "02/03/2024", employee: "Jeferson", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "4", finalDate: "02/03/2024", employee: "Carlos", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "5", finalDate: "02/06/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/06/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "6", finalDate: "02/06/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/06/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "7", finalDate: "02/07/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/07/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "8", finalDate: "02/08/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/08/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "9", finalDate: "02/09/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/09/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "10", finalDate: "02/10/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/12/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "11", finalDate: "02/11/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/11/2024', equipmentType: 'Notebook',
+      description_work: ''
+    },
+    {
+      id: "12", finalDate: "02/12/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/12/2024', equipmentType: 'Notebook',
+      description_work: ''
+    }
+  ];
+
   months = {
     '01': 'Janeiro',
     '02': 'Fevereiro',
@@ -50,7 +101,7 @@ export class DashboardComponent implements AfterViewInit {
     
     const completedServicesByMonth: Record<string, number> = {};
 
-    this.workService.works.forEach(service => {
+    this.services.forEach(service => {
       if (service.status === 'Finalizado') {
         const month = service.finalDate.split('/')[1];
         completedServicesByMonth[month] = (completedServicesByMonth[month] || 0) + 1;
@@ -59,7 +110,7 @@ export class DashboardComponent implements AfterViewInit {
 
     const registeredServicesByMonth: Record<string, number> = {};
 
-    this.workService.works.forEach(service => {
+    this.services.forEach(service => {
       const month = service.initialDate.split('/')[1];
       registeredServicesByMonth[month] = (registeredServicesByMonth[month] || 0) + 1;
     });

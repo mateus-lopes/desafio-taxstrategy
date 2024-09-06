@@ -7,4 +7,5 @@ export interface IService {
     description: string;
     status:  'Em Andamento' | 'Finalizado' |  'Aguardando Funcionário' | '';
     selected?: boolean;
+    description_work: string;
 }

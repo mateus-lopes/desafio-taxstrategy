@@ -20,7 +20,8 @@ export class CardComponent {
     employee: 'Mateus Albano',
     description: '...',
     status: "Em Andamento",
-    selected: false
+    selected: false,
+    description_work: ''
   };
 
   getColor(status: string) {

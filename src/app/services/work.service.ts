@@ -17,7 +17,8 @@ export class WorkService {
       status: "Em Andamento",
       selected: false,
       initialDate: "10/08/2023",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "12",
@@ -27,7 +28,8 @@ export class WorkService {
       status: "Aguardando Funcionário",
       selected: false,
       initialDate: "19/08/2023",
-      equipmentType: "Notebook"
+      equipmentType: "Notebook",
+      description_work: ''
     },
     {
       id: "9",
@@ -37,7 +39,8 @@ export class WorkService {
       status: "Em Andamento",
       selected: false,
       initialDate: "12/08/2023",
-      equipmentType: "Monitor"
+      equipmentType: "Monitor",
+      description_work: ''
     },
     {
       id: "7",
@@ -47,7 +50,8 @@ export class WorkService {
       status: "Em Andamento",
       selected: false,
       initialDate: "13/08/2023",
-      equipmentType: "Notebook"
+      equipmentType: "Notebook",
+      description_work: ''
     },
     {
       id: "10",
@@ -57,7 +61,8 @@ export class WorkService {
       status: "Em Andamento",
       selected: false,
       initialDate: "11/08/2023",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "11",
@@ -67,7 +72,8 @@ export class WorkService {
       status: "Aguardando Funcionário",
       selected: false,
       initialDate: "15/08/2023",
-      equipmentType: "TV"
+      equipmentType: "TV",
+      description_work: ''
     },
     {
       id: "1",
@@ -77,7 +83,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "02/08/2023",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "2",
@@ -87,7 +94,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "03/08/2023",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "3",
@@ -97,7 +105,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "2023/08/05",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "4",
@@ -107,7 +116,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "2023/08/08",
-      equipmentType: "Notebook"
+      equipmentType: "Notebook",
+      description_work: ''
     },
     {
       id: "5",
@@ -117,7 +127,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "2023/07/31",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     },
     {
       id: "6",
@@ -127,7 +138,8 @@ export class WorkService {
       status: "Finalizado",
       selected: false,
       initialDate: "2023/08/01",
-      equipmentType: "Celular"
+      equipmentType: "Celular",
+      description_work: ''
     }
   ];
   public works: IService[] = [];
@@ -141,7 +153,8 @@ export class WorkService {
     status: '',
     selected: false,
     initialDate: '',
-    equipmentType: ''
+    equipmentType: '',
+    description_work: ''
   };
   public employees: string[] = this.employeeService.allEmployees.map(employee => employee.name);
   public equipmentTypes: string[] = ['Celular', 'TV', 'Notebook', 'Monitor', 'Computador desktop'];

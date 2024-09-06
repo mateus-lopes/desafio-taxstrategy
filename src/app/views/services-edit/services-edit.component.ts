@@ -32,6 +32,7 @@ export class ServicesEditComponent implements OnInit {
       initialDate: new FormControl(this.workService.work.initialDate, [Validators.required]),
       finalDate: new FormControl(this.workService.work.finalDate, [Validators.required]),
       employee: new FormControl(this.workService.work.employee, []),
+      description_work: new FormControl(this.workService.work.description_work, [Validators.required]),
     });
   }
   editForm!: FormGroup;
