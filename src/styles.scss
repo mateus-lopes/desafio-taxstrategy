@@ -27,6 +27,10 @@ body.ctrl-pressed {
   }
 }
 
+table {
+  background: #fff !important;
+}
+
 select {
   appearance: none;
   transition: all 0.3s ease;
@@ -52,8 +56,4 @@ select:focus {
 
 input:read-only:focus, textarea:read-only:focus, select:read-only:focus {
   outline: none;
-}
-
-table {
-  background: #fff
 }
