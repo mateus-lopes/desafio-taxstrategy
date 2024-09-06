@@ -5,6 +5,7 @@ import { CardDashboardComponent } from '../../components/card-dashboard/card-das
 import { BtnComponent } from '../../components/btn/btn.component';
 import { Chart, registerables } from 'chart.js';
 import { IService } from '../../interfaces/navbar.interface';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,8 @@ import { IService } from '../../interfaces/navbar.interface';
     LayoutComponent,
     CardDashboardComponent,
     CommonModule,
-    BtnComponent
+    BtnComponent,
+    RouterLink
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
@@ -24,7 +26,7 @@ export class DashboardComponent implements AfterViewInit {
     { ref: "1", finalDate: "02/04/2024", employee: "João", description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a", status: "Finalizado", selected: false, initialDate: '02/08/2024', equipmentType: 'Notebook' },
     { ref: "2", finalDate: "02/05/2024", employee: "João", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook' },
     { ref: "3", finalDate: "02/03/2024", employee: "Jeferson", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook' },
-    { ref: "4", finalDate: "02/03/2024", employee: "Carlos", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/12/2024', equipmentType: 'Notebook' },
+    { ref: "4", finalDate: "02/03/2024", employee: "Carlos", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/05/2024', equipmentType: 'Notebook' },
     { ref: "5", finalDate: "02/06/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/06/2024', equipmentType: 'Notebook' },
     { ref: "6", finalDate: "02/06/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/06/2024', equipmentType: 'Notebook' },
     { ref: "7", finalDate: "02/07/2024", employee: "", description: "Troca de óleo", status: "Finalizado", selected: false, initialDate: '02/07/2024', equipmentType: 'Notebook' },
@@ -65,8 +67,8 @@ export class DashboardComponent implements AfterViewInit {
 
     this.services.forEach(service => {
       if (service.status === 'Finalizado') {
-      const month = service.finalDate.split('/')[1];
-      completedServicesByMonth[month] = (completedServicesByMonth[month] || 0) + 1;
+        const month = service.finalDate.split('/')[1];
+        completedServicesByMonth[month] = (completedServicesByMonth[month] || 0) + 1;
       }
     });
 
@@ -93,14 +95,14 @@ export class DashboardComponent implements AfterViewInit {
         datasets: [
           {
             label: ' Número de Serviços Finalizados',
-            data: data1,
+            data: data1.map(value => value -1),
             backgroundColor: 'rgba(15, 138, 101, 0.5)',
             borderColor: 'rgba(15, 138, 101, 1)',
             borderWidth: 1
           },
           {
             label: ' Número de Serviços Cadastrados',
-            data: data2,
+            data: data2.map(value => value -1),
             backgroundColor: 'rgba(42, 93, 174, 0.5)',
             borderColor: 'rgba(42, 93, 174, 1)',
             borderWidth: 1
@@ -110,7 +112,9 @@ export class DashboardComponent implements AfterViewInit {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            min: 0,
+            max: Math.max(...data1, ...data2) + 1,
+            beginAtZero: false,
           }
         }
       }
