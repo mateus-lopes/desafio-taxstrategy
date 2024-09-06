@@ -126,10 +126,15 @@ export class ServiceTableComponent {
     return this.services.every(service => service.selected);
   }
 
-  draggedItemIndex: number | null = null;
+  draggedItemIndex: number[] = [];
 
   onDragStart(event: DragEvent, index: number) {
-    this.draggedItemIndex = index;
+    this.draggedItemIndex.push(index);
+    this.services.map((service) => {
+      if (service.selected) {
+        this.draggedItemIndex.push(this.services.indexOf(service));
+      }
+    })
     if (event.dataTransfer) {
       event.dataTransfer.setData('text', String(index));
       event.dataTransfer.effectAllowed = 'move';
@@ -146,13 +151,13 @@ export class ServiceTableComponent {
 
     const draggedIndex = this.draggedItemIndex;
 
-    if (draggedIndex !== null && draggedIndex !== index) {
-      const temp = this.services[draggedIndex];
-      this.services.splice(draggedIndex, 1);
+    if (draggedIndex !== null && draggedIndex[0] !== index) {
+      const temp = this.services[draggedIndex[0]];
+      this.services.splice(draggedIndex[0], 1);
       this.services.splice(index, 0, temp);
     }
 
-    this.draggedItemIndex = null;
+    this.draggedItemIndex = [];
   }
 
   showContextMenu = false;
