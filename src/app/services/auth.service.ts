@@ -21,7 +21,6 @@ export class AuthService {
   login(username: string, password: string): boolean {
     if (username != '' && password != '') {
       const user = this.userService.getUser(username);
-      console.log(user);
       localStorage.setItem('currentUser', JSON.stringify(user));
       return true;
     }
