@@ -1,1 +1,5 @@
-<p>services-panel works!</p>
+<app-layout path="Ordens de Serviço" page="Painel de Manutenções" currentPage="/services">
+    <div main>
+        <app-service-table [services]="workService.works"></app-service-table>
+    </div>
+</app-layout>

@@ -1,0 +1,7 @@
+<button (click)="onClick" [class]="'btn ' + size + ' ' + variant" [disabled]="disabled">
+    @if (!loading){
+        {{ text }}
+    } @else {
+        Carregando...
+    }
+</button>

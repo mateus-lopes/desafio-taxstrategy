@@ -1,0 +1,51 @@
+<form [formGroup]="addForm">
+    <div class="flex flex-col gap-3 md:px-3 mb-5">
+        <label for="employee">Funcionário (opcional)</label>
+        <div class="relative inline-block">
+            <select class="w-full px-6 py-3 rounded-xl" id="employee" formControlName="employee">
+                <option value="" disabled selected>Selecione um funcionário</option>
+                <option *ngFor="let employee of workService.employees" [value]="employee">{{ employee }}</option>
+            </select>
+            <span class="dropdown-icon">
+                <svg style="transform: rotate(180deg)" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#BFBFBF" stroke-width="1.89474"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </span>
+        </div>
+    </div>
+    <div class="flex flex-wrap">
+        <div class="w-full md:w-1/2 flex flex-col gap-3 md:px-3 mb-5">
+            <label for="equipmentType">Tipo de Equipamento</label>
+            <div class="relative inline-block">
+                <select class="w-full px-6 py-3 rounded-xl" id="equipmentType" formControlName="equipmentType">
+                    <option value="" disabled selected>
+                        Selecione um tipo de equipamento
+                    </option>
+                    <option *ngFor="let equipmentType of workService.equipmentTypes" [value]="equipmentType">{{ equipmentType }}</option>
+                </select>
+                <span class="dropdown-icon">
+                    <svg style="transform: rotate(180deg)" width="16" height="16" viewBox="0 0 16 16" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.6316 10.9474L7.579 5.89473L2.52637 10.9474" stroke="#BFBFBF" stroke-width="1.89474"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 flex flex-col gap-3 md:px-3 mb-5">
+            <label for="finalDate">Previsão de entrega</label>
+            <input class="px-6 py-3 rounded-xl" type="text" formControlName="finalDate"
+                (input)="applyDateMask($event, 'finalDate')" placeholder="DD/MM/YYYY" />
+        </div>
+    </div>
+    <div class="flex flex-col gap-3 md:px-3 mb-5">
+        <label for="description">Descrição</label>
+        <textarea class="px-6 py-3 rounded-xl" id="description" rows="7" placeholder="Escreva aqui..."
+            formControlName="description"></textarea>
+    </div>
+    <div class="md:px-3">
+        <app-btn text="Cadastrar" (click)="submit()" [disabled]="!addForm.valid" />
+    </div>
+</form>

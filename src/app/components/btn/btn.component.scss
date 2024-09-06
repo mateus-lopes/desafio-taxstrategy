@@ -1,0 +1,91 @@
+@import "../../../color-variables.scss";
+
+.btn {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    position: relative;
+
+    &.primary {
+        background: $primary-color;
+    }
+    &.primary:hover {
+        background: $dark-primary-color;
+    }
+
+    &.secondary {
+        background: transparent;
+        border: $primary-color 2px solid;
+        color: $primary-color;
+        transition: all 0.2s;
+    }
+
+    &.secondary:hover {
+        background: $primary-color !important;
+        border: $primary-color 2px solid !important;
+        color: white !important;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        border-radius: 10px;
+        width: 0;
+        height:  100%;
+        top: 0;
+        left: 0;
+        background: #0000001a;
+    }
+
+    &.small {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+    
+    &.medium {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    &.large {
+        padding: 20px 60px;
+        font-size: 20px;
+        border-radius: 30px;
+
+        &:hover::after {
+            border-radius: 30px;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    &.block {
+        display: block;
+        width: 100%;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+
+        &:hover::after {
+            border-radius: 0;
+            width: 0;
+            height: 0;
+        }
+    }
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto;
+}

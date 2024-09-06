@@ -1,0 +1,15 @@
+<div [class]="size">
+    <a
+        [routerLink]="link || ''"
+        [class]="[link ? 'hover:border-[#F7955B] cursor-pointer' : '']"
+        class="bg-white border-white border-2 transition-all rounded-xl overflow-hidden shadow-lg p-4 min-h-72 block"
+        >
+        <h1 class="text-2xl font-bold text-black">
+            {{title}}
+        </h1>
+        <p class="text-gray-500">
+            {{content}}
+        </p>
+        <ng-content></ng-content>
+    </a>
+</div>

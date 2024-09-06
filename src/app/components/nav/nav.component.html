@@ -1,20 +1,13 @@
-<ul class="flex flex-col gap-4 py-8">
-    <li>
-        <a routerLink="/">Visão Geral</a>
-    </li>
-    <li class="notification">
-        <a routerLink="/">Meus Seviços</a>
-    </li>
-    <app-nav-dropdown />
-    <li class="nav-dropdown">
-        <p class="dropdown">Funcionários</p>
-        <ul>
-            <li>
-                <a routerLink="/">Tabela de Funcionários</a>
+<ul class="flex flex-col pt-4 md:py-8">
+    <ng-container *ngFor="let item of layoutService.navbar">
+        <a [routerLink]="item.url" class="py-2">
+        <li [class]="{'select': currentPage == item.url, 'notification': item.notification}" class="px-8 cursor-pointer hover:text-[#F7955B] transition-all select-none" *ngIf="item.url">
+                {{ item.text }}
+                <span *ngIf="item.notification">
+                    {{ item.notification }}
+                </span>
             </li>
-            <li>
-                <a routerLink="/">Cadastrar novo Funcionário</a>
-            </li>
-        </ul>
-    </li>
+        </a>
+        <app-nav-dropdown *ngIf="!item.url" [data]="item" [currentPage]="currentPage" />
+    </ng-container>
 </ul>

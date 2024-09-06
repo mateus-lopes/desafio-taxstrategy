@@ -3,7 +3,7 @@
 .nav-dropdown {
     position: relative;
 
-    &::after {
+    .dropdown::after {
         content: '';
         position: absolute;
         top: .5em;
@@ -11,8 +11,18 @@
         transform: translateY(-50%);
         width: 18px;
         height: 18px;
-        background-image: url('../../../assets/arrow-down.svg');
         background-size: cover;
+        transition: all .4s;
+    }
+
+    .dropdownIn::after {
+        background-image: url('../../../assets/icon_arrowDown.svg');
+        transform: rotate(0deg);
+    }
+
+    .dropdownOut::after {
+        background-image: url('../../../assets/icon_arrowDown.svg');
+        transform: rotate(-180deg);
     }
 
     li {
@@ -20,6 +30,9 @@
         padding: .5em 0;
     }
 
+    ul li:first-child {
+        padding-top: 1em;
+    }
     ul li:last-child {
         padding-bottom: 0;
     }
@@ -33,7 +46,30 @@
         background-color: $secondary-color;
         border-radius: 100%;
     }
+
+    li:hover::before {
+        background-color: $primary-color;
+    }
+    li:hover {
+        color: $primary-color;
+        cursor: pointer;
+    }
 }
 
+.select {
+    color: $primary-color;
+}
+
+
+
+.fadeIn {
+    display: block;
+}
+
+
+
+.fadeOut {
+    display: none;
+}
 
 

@@ -6,4 +6,50 @@
 
 body {
   font-family: "Nunito", sans-serif;
+  background-color: #F7F7F7;
+}
+
+body.ctrl-pressed {
+  cursor: grab;
+}
+
+.fadeIn {
+  opacity: 1;
+  animation: fadeIn .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+select {
+  appearance: none;
+  transition: all 0.3s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #F7955B;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.custom-shadow, table, input, select, textarea {
+  box-shadow: 0px 16px 25.5px -2px rgba(102, 102, 102, 0.055);
+}
+
+input:read-only:focus, textarea:read-only:focus, select:read-only:focus {
+  outline: none;
 }

@@ -1,0 +1,59 @@
+.text-muted {
+    color: #787878;
+}
+
+.selected {
+    color: #F7955B !important;
+
+    .text-muted {
+        color: #F7955B !important;
+    }
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+tr.dragging {
+    opacity: 1;
+    background-color: #3498db;
+}
+
+tr.dragover {
+    background-color: #3498db;
+    border: 2px dashed #3498db;
+}
+
+.context-menu {
+    position: absolute;
+    z-index: 1000;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-div {
+    background-color: #00000034;
+}
+
+
+.blue {
+    background-color: #dcf3fc;
+    color: #0c4cac;
+}
+
+.green {
+    background-color: #dcfce7;
+    color: #00b74a;
+}
+
+.red {
+    background-color: #fcdcdc;
+    color: #ff0000;
+}
+
+.black {
+    background-color: #0000001a;
+    color: #000000;
+}

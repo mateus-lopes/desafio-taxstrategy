@@ -1,1 +1,10 @@
-<p>title-page works!</p>
+
+<h1 class="text-[#0F172A] text-3xl font-semibold mb-6" *ngIf="path">
+    <span>
+        {{ path }}
+    </span>
+    <span class="w-2.5 h-2.5 mb-1 bg-[#0F172A] inline-block rounded-full mx-2" *ngIf="page != ''"></span>
+    <span>
+        {{ page }}
+    </span>
+</h1>
