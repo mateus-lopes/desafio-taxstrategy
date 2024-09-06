@@ -6,6 +6,7 @@ import { ServicesAddComponent } from './views/services-add/services-add.componen
 import { ServicesPanelComponent } from './views/services-panel/services-panel.component';
 import { ServicesReportsComponent } from './views/services-reports/services-reports.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
+import { ServicesEditComponent } from './views/services-edit/services-edit.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +25,10 @@ export const routes: Routes = [
     {
         path: 'services',
         component: ServicesPanelComponent
+    },
+    {
+        path: 'services/edit/:id',
+        component: ServicesEditComponent
     },
     {
         path: 'services/add',
