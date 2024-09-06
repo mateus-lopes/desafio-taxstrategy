@@ -10,124 +10,124 @@ export class WorkService {
   public allWorks: IService[] = [
     {
       ref: "8",
-      finalDate: "2021-10-10",
-      employee: "João",
-      description: "Troca de óleo",
+      finalDate: "2023-08-14",
+      employee: "Carlos Silva",
+      description: "Substituição da bateria de celular.",
       status: "Em Andamento",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-10",
+      equipmentType: "Celular"
     },
     {
       ref: "12",
-      finalDate: "2021-10-10",
+      finalDate: "2023-08-20",
       employee: "",
-      description: "Quando o usuário pressionar a tecla CTRL e clicar nas linhas que ele deseja alterar, então o sistema deve dar destaque às linhas selecionadas utilizando uma cor diferente  das linhas não selecionadas Quando o usuário clicar com o botão direito do mouse sobre as linhas selecionadas, então o sistema deve apresentar um dropdown com as seguintes opções Alterar o funcionário responsável pelo a",
+      description: "Troca do display quebrado de notebook. Aguardando definição do funcionário responsável.",
       status: "Aguardando Funcionário",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Notebook'
+      initialDate: "2023-08-19",
+      equipmentType: "Notebook"
     },
     {
       ref: "9",
-      finalDate: "2021-10-10",
-      employee: "Jeferson",
-      description: "Troca de óleo",
+      finalDate: "2023-08-16",
+      employee: "Jeferson Santos",
+      description: "Troca do cabo de alimentação de monitor.",
       status: "Em Andamento",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Monitor'
+      initialDate: "2023-08-12",
+      equipmentType: "Monitor"
     },
     {
       ref: "7",
-      finalDate: "2021-10-10",
+      finalDate: "2023-08-18",
       employee: "Mateus Albano",
-      description: "Troca de óleo",
+      description: "Atualização de sistema operacional e formatação de notebook.",
       status: "Em Andamento",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Notebook'
+      initialDate: "2023-08-13",
+      equipmentType: "Notebook"
     },
     {
       ref: "10",
-      finalDate: "2021-10-10",
+      finalDate: "2023-08-14",
       employee: "Mateus Albano",
-      description: "Troca de óleo",
+      description: "Substituição do conector de carga de celular.",
       status: "Em Andamento",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-11",
+      equipmentType: "Celular"
     },
     {
       ref: "11",
-      finalDate: "2021-10-10",
+      finalDate: "2023-08-17",
       employee: "",
-      description: "Troca de óleo",
+      description: "Troca do painel frontal da TV de 55 polegadas.",
       status: "Aguardando Funcionário",
       selected: false,
-      initialDate: '',
-      equipmentType: 'TV'
+      initialDate: "2023-08-15",
+      equipmentType: "TV"
     },
     {
       ref: "1",
-      finalDate: "2021-10-10",
-      employee: "João",
-      description: "Troca de óleo",
+      finalDate: "2023-08-05",
+      employee: "João Pereira",
+      description: "Substituição da tela trincada de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-02",
+      equipmentType: "Celular"
     },
     {
       ref: "2",
-      finalDate: "2021-10-10",
-      employee: "João",
-      description: "Troca de óleo",
+      finalDate: "2023-08-07",
+      employee: "João Pereira",
+      description: "Troca do microfone de celular com defeito.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-03",
+      equipmentType: "Celular"
     },
     {
       ref: "3",
-      finalDate: "2021-10-10",
-      employee: "Jeferson",
-      description: "Troca de óleo",
+      finalDate: "2023-08-09",
+      employee: "Jeferson Santos",
+      description: "Reparo no circuito interno de smartphone com problema de aquecimento.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-05",
+      equipmentType: "Celular"
     },
     {
       ref: "4",
-      finalDate: "2021-10-10",
-      employee: "Mateus",
-      description: "Troca de óleo",
+      finalDate: "2023-08-12",
+      employee: "Mateus Albano",
+      description: "Troca do touchpad de notebook que não responde.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-08-08",
+      equipmentType: "Notebook"
     },
     {
       ref: "5",
-      finalDate: "2021-10-10",
-      employee: "João",
-      description: "Troca de óleo",
+      finalDate: "2023-08-03",
+      employee: "João Pereira",
+      description: "Troca do sensor de proximidade de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
+      initialDate: "2023-07-31",
+      equipmentType: "Celular"
     },
     {
       ref: "6",
-      finalDate: "2021-10-10",
-      employee: "João",
-      description: "Troca de óleo",
+      finalDate: "2023-08-06",
+      employee: "João Pereira",
+      description: "Reparo do botão de volume de celular.",
       status: "Finalizado",
       selected: false,
-      initialDate: '',
-      equipmentType: 'Celular'
-    },
+      initialDate: "2023-08-01",
+      equipmentType: "Celular"
+    }
   ];
   public works: IService[] = [];
   private _myWorks: IService[] = [];
@@ -142,7 +142,7 @@ export class WorkService {
     initialDate: '',
     equipmentType: ''
   };
-  public employees: string[] = ['Marcos Paulo', 'Jeferson Agudo', 'Mateus Albano'];
+  public employees: string[] = ['Carlos Silva', 'Jeferson Santos', 'Mateus Albano', 'João Pereira'];
   public equipmentTypes: string[] = ['Celular', 'TV', 'Notebook', 'Monitor', 'Computador desktop'];
 
   constructor(public userService: UserService) {
